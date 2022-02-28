@@ -1,0 +1,20 @@
+﻿@model Slider
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>TrendWord</th>
+            <th>price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th width="300px">
+                <img width="200" height="150" src="~/images/demoes/demo3/slider/@Model.Image" />
+            </th>
+            <td>@Html.Raw(Model.TrendWord)</td>
+            <td>@Model.Price</td>
+            @*<td> @Html.DisplayNameFor(model => model.Price)</td>*@
+        </tr>
+    </tbody>
+</table>

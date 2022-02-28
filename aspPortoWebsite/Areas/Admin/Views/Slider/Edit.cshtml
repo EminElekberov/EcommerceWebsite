@@ -1,0 +1,50 @@
+﻿@model Slider
+@{ 
+    ViewData["Title"] = "Edit";
+}
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label>Photo elave et</label>
+        <input asp-for="Photo" class="form-control" />
+        <span asp-validation-for="Photo" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        <label>Current Photo</label>
+        <img height="150" width="200" src="~/images/demoes/demo3/slider/@Model.Image" />
+        <input type="hidden" name="Image" value="@Model.Image" />
+    </div>
+    <div class="form-group">
+        <label>Trendword</label>
+        <textarea asp-for="TrendWord" id="TrendWord" class="form-control"></textarea>
+        <span asp-validation-for="TrendWord" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>ClothType</label>
+        <input asp-for="ClothType" class="form-control" />
+        <span asp-validation-for="ClothType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Discount</label>
+        <input asp-for="DisCount" class="form-control" />
+        <span asp-validation-for="DisCount" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-danger btn-block" value="Update" />
+</form>
+
+
+@section scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/32.0.0/ckeditor.min.js"></script>
+    <script>
+    ClassicEditor.create(document.querySelector('#TrendWord')).catch(error => {
+        console.error(error);
+    });
+    </script>
+}

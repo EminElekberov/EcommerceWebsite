@@ -1,0 +1,54 @@
+﻿@model Slider
+
+@section styles{ @*bunu ona gore yazdiqki burda yazilan css shared papkasinda loayout.cshtml icerisinde render ede bilek*@
+<style>
+    label{
+        color:red;
+    }
+</style>
+}
+<form method="post" enctype="multipart/form-data">
+    @*<div asp-validation-summary="ModelOnly" style="color:red"></div>*@
+    <div class="mb-3">
+        <label>Image</label>
+        <input type="file" class="form-control" asp-for="Photo">
+        <span asp-validation-for="Photo" style="color:red"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Price</label>
+        <input type="number" class="form-control" asp-for="Price">
+        <span asp-validation-for="Price" style="color:red"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>TrendWWord</label>
+        <textarea asp-for="TrendWord" class="form-control" ></textarea>
+        <span asp-validation-for="TrendWord" style="color:red"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Discount</label>
+        <input type="text" class="form-control" asp-for="DisCount">
+        <span asp-validation-for="DisCount" style="color:red"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Cloth type</label>
+        <input type="text" class="form-control" asp-for="ClothType">
+        <span asp-validation-for="ClothType" style="color:red"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section scripts{ 
+
+<partial name="_ValidationScriptsPartial" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/32.0.0/ckeditor.min.js"></script>
+<script>
+    ClassicEditor.create(document.querySelector('#TrendWord')).catch(error => {
+        console.error(error);
+    });
+</script>
+}
