@@ -56,6 +56,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             portoDbContext.SaveChanges();
             return Redirect("/Admin/Student/Index");
         }
+        //
         public IActionResult Edit(int? Id)
         {
             ViewBag.Group = portoDbContext.Groups.ToList();
@@ -70,7 +71,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             }
             return View(student);
         }
-        //
         [HttpPost]
         public IActionResult Edit(Student student)
         {
