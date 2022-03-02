@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace aspPortoWebsite.Models
 {
-    public class PortoDbContext:DbContext
+    public class PortoDbContext:IdentityDbContext<User>
     {
         public PortoDbContext(DbContextOptions<PortoDbContext> options):base(options) { }
 
@@ -53,25 +54,23 @@ namespace aspPortoWebsite.Models
                .WithMany(b => b.Students)
                .HasForeignKey(a => a.GroupId);
 
-            //many to many
+            ////many to many
             //modelBuilder.Entity<TechertoHobby>()
             //    .HasNoKey();
 
 
-            //modelBuilder.Entity<TechertoHobby>()
-            //    .HasNoKey()
-            //   .HasOne(a => a.Teacher)
-            //   .WithMany(b => b.techertoHobbies)
-            //   .HasForeignKey(a => a.TeacherID);
+            modelBuilder.Entity<TechertoHobby>()
+               .HasOne(a => a.Teacher)
+               .WithMany(b => b.TechertoHobbies)
+               .HasForeignKey(a => a.TeacherID);
 
-            //modelBuilder.Entity<TechertoHobby>()
-            //    .HasNoKey()
-            //  .HasOne(a => a.Hobby)
-            //  .WithMany(b => b.techertoHobbies)
-            //  .HasForeignKey(a => a.HobbyId);
+            modelBuilder.Entity<TechertoHobby>()
+              .HasOne(a => a.Hobby)
+              .WithMany(b => b.TechertoHobbies)
+              .HasForeignKey(a => a.HobbyId);
 
-            //modelBuilder.Entity<TechertoHobby>()
-            //    .HasKey(bc => new { bc.TeacherID, bc.HobbyId });
+            modelBuilder.Entity<TechertoHobby>()
+                .HasKey(bc => new { bc.TeacherID, bc.HobbyId });
 
         }
 

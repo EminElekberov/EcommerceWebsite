@@ -69,3 +69,5 @@ C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Ra
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Student\Index.cshtml.g.cs
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Student\AddStudent.cshtml.g.cs
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Student\Edit.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.Core.dll
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

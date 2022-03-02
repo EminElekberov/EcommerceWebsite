@@ -2,7 +2,7 @@
 
 namespace aspPortoWebsite.Migrations
 {
-    public partial class cibicf : Migration
+    public partial class Intial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,6 +19,32 @@ namespace aspPortoWebsite.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Groups",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Fullname = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Groups", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hobby",
+                columns: table => new
+                {
+                    HobbyId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hobby", x => x.HobbyId);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,16 +65,61 @@ namespace aspPortoWebsite.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Teacher",
+                columns: table => new
+                {
+                    TeacherId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Surname = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teacher", x => x.TeacherId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Students",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Fullname = table.Column<string>(nullable: true)
+                    Fullname = table.Column<string>(nullable: true),
+                    GroupId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Students_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TechertoHobby",
+                columns: table => new
+                {
+                    TeacherID = table.Column<int>(nullable: false),
+                    HobbyId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TechertoHobby", x => new { x.TeacherID, x.HobbyId });
+                    table.ForeignKey(
+                        name: "FK_TechertoHobby_Hobby_HobbyId",
+                        column: x => x.HobbyId,
+                        principalTable: "Hobby",
+                        principalColumn: "HobbyId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TechertoHobby_Teacher_TeacherID",
+                        column: x => x.TeacherID,
+                        principalTable: "Teacher",
+                        principalColumn: "TeacherId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,6 +158,16 @@ namespace aspPortoWebsite.Migrations
                 table: "StudentAdresses",
                 column: "StudentId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_GroupId",
+                table: "Students",
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TechertoHobby_HobbyId",
+                table: "TechertoHobby",
+                column: "HobbyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -101,7 +182,19 @@ namespace aspPortoWebsite.Migrations
                 name: "StudentAdresses");
 
             migrationBuilder.DropTable(
+                name: "TechertoHobby");
+
+            migrationBuilder.DropTable(
                 name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "Hobby");
+
+            migrationBuilder.DropTable(
+                name: "Teacher");
+
+            migrationBuilder.DropTable(
+                name: "Groups");
         }
     }
 }

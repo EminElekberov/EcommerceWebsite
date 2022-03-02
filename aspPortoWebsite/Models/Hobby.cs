@@ -8,8 +8,9 @@ namespace aspPortoWebsite.Models
 {
     public class Hobby
     {
-        public int Id { get; set; }
+        [Key]
+        public int HobbyId { get; set; }
         public string Name { get; set; }
-        public ICollection<TechertoHobby> techertoHobbies { get; set; }
+        public IList<TechertoHobby> TechertoHobbies { get; set; }
     }
 }

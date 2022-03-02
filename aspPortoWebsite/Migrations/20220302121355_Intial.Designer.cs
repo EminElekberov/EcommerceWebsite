@@ -9,8 +9,8 @@ using aspPortoWebsite.Models;
 namespace aspPortoWebsite.Migrations
 {
     [DbContext(typeof(PortoDbContext))]
-    [Migration("20220226165254_group")]
-    partial class group
+    [Migration("20220302121355_Intial")]
+    partial class Intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,21 @@ namespace aspPortoWebsite.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.Hobby", b =>
+                {
+                    b.Property<int>("HobbyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HobbyId");
+
+                    b.ToTable("Hobby");
                 });
 
             modelBuilder.Entity("aspPortoWebsite.Models.Slider", b =>
@@ -155,6 +170,39 @@ namespace aspPortoWebsite.Migrations
                     b.ToTable("StudentAdresses");
                 });
 
+            modelBuilder.Entity("aspPortoWebsite.Models.Teacher", b =>
+                {
+                    b.Property<int>("TeacherId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TeacherId");
+
+                    b.ToTable("Teacher");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.TechertoHobby", b =>
+                {
+                    b.Property<int>("TeacherID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HobbyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TeacherID", "HobbyId");
+
+                    b.HasIndex("HobbyId");
+
+                    b.ToTable("TechertoHobby");
+                });
+
             modelBuilder.Entity("aspPortoWebsite.Models.Student", b =>
                 {
                     b.HasOne("aspPortoWebsite.Models.Group", "Group")
@@ -169,6 +217,21 @@ namespace aspPortoWebsite.Migrations
                     b.HasOne("aspPortoWebsite.Models.Student", "Student")
                         .WithOne("Adress")
                         .HasForeignKey("aspPortoWebsite.Models.StudentAdress", "StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.TechertoHobby", b =>
+                {
+                    b.HasOne("aspPortoWebsite.Models.Hobby", "Hobby")
+                        .WithMany("TechertoHobbies")
+                        .HasForeignKey("HobbyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("aspPortoWebsite.Models.Teacher", "Teacher")
+                        .WithMany("TechertoHobbies")
+                        .HasForeignKey("TeacherID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -8,9 +8,10 @@ namespace aspPortoWebsite.Models
 {
     public class Teacher
     {
-        public int Id { get; set; }
+        [Key]
+        public int TeacherId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public ICollection<TechertoHobby> techertoHobbies { get; set; }
+        public IList<TechertoHobby> TechertoHobbies { get; set; }
     }
 }

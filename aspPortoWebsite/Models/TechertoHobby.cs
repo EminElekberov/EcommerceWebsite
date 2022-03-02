@@ -8,9 +8,9 @@ namespace aspPortoWebsite.Models
 {
     public class TechertoHobby
     {
-        //public int TeacherID { get; set; }
-        //public int HobbyId { get; set; }
-        //public Teacher Teacher { get; set; }
-        //public Hobby Hobby { get; set; }
+        public int TeacherID { get; set; }
+        public int HobbyId { get; set; }
+        public Teacher Teacher { get; set; }
+        public Hobby Hobby { get; set; }
     }
 }
