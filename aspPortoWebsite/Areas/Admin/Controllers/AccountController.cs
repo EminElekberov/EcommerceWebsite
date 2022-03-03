@@ -28,6 +28,50 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            User user = new User();
+            return View(user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return NotFound();
+            }
+            var result = await _signInManager.PasswordSignInAsync(user.Email, user.PasswordHash, false,false);
+            if (result.Succeeded)
+            {
+                return Redirect("/Admin/Slider/Index");
+            }
+            return View(user);
+        }
+        [HttpGet]
+        public IActionResult Register()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public async  Task<IActionResult> Register(Register register)
+        {
+            if (_userManager.FindByEmailAsync(register.Email).Result == null)
+            {
+                User identityUser = new User()
+                {
+                    UserName=register.Email
+                };
+                IdentityResult result =  await _userManager.CreateAsync(identityUser,register.Password);
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(identityUser, isPersistent: false);
+                    return Redirect("/Admin/Account/Login");
+                }
+            }
+            return View(register);
+        }
         public async Task SeedRole()
         {
             if (!await _roleManager.RoleExistsAsync(roleName:"Admin"))

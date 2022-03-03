@@ -43,8 +43,6 @@ namespace aspPortoWebsite
                 options.Lockout.MaxFailedAccessAttempts = 3;
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMilliseconds(5);//blokladiqdan  5 deq sonra acilsin
                 options.Lockout.AllowedForNewUsers = true;//eger sen yeni qeydiyytadn kecmisense seni parolda sehv etmisense seni bloka salmir
-
-
             });
         }
 
