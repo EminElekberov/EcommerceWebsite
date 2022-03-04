@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace aspPortoWebsite.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    
     public class AccountController : Controller
     {
         private readonly PortoDbContext _portoDbContext;
@@ -66,6 +67,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                 IdentityResult result =  await _userManager.CreateAsync(identityUser,register.Password);
                 if (result.Succeeded)
                 {
+                    _userManager.AddToRoleAsync(identityUser, "User").Wait();
                     await _signInManager.SignInAsync(identityUser, isPersistent: false);
                     return Redirect("/Admin/Account/Login");
                 }
