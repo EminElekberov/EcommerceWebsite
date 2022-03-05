@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Identity.UserManager<User>  userManager;
+
+@{
+    User user = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        user = userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 
@@ -245,9 +255,15 @@
                             </form>
                         </div>
 
-                        <a href="login.html" class="header-icon header-icon-user" title="Login">
-                            <i class="icon-user-2"></i>
-                        </a>
+                        @if (user == null)
+                        {
+                            <a asp-action="Login" asp-controller="Account" class="header-icon header-icon-user">Login</a>
+                            <a asp-action="Register" asp-controller="Account" class="header-icon header-icon-user">Register</a>
+                        }
+                        else
+                        {
+                            <h4>@user.FirstName  @user.LastName</h4>
+                        }
 
                         <a href="wishlist.html" class="header-icon header-icon-wishlist" title="Wishlist">
                             <i class="icon-wishlist-2"></i>
@@ -359,9 +375,9 @@
 
     </div>
 
-        <main class="main">
-            @RenderBody()
-        </main>
+    <main class="main">
+        @RenderBody()
+    </main>
 
     <footer class="footer">
         <div class="container">
