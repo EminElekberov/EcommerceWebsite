@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,5 +20,9 @@ namespace aspPortoWebsite.Models
 
         [Required]
         public int Count { get; set; }
+        [Required]
+        public string Description { get; set; }
+        [NotMapped]//menasi odurki database bunu nezere alma
+        public IFormFile Photo { get; set; }
     }
 }

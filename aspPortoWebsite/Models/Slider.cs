@@ -10,7 +10,6 @@ namespace aspPortoWebsite.Models
         [Required]
         public string TrendWord  { get; set; }
         [Required]
-
         public string DisCount { get; set; }
         [Required]
         [StringLength(15, ErrorMessage = "Prices is required")]

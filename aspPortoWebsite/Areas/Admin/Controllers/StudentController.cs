@@ -86,5 +86,34 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             portoDbContext.SaveChanges();
             return Redirect("/Admin/Student/Index");
         }
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var studentAddress = portoDbContext.Students.Include(x => x.Adress).Include(z => z.Group).FirstOrDefault(x => x.Id == id);
+            if (studentAddress == null)
+            {
+                return NotFound();
+            }
+            return View(studentAddress);
+
+        }
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Student student = portoDbContext.Students.Find(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            portoDbContext.Students.Remove(student);
+            portoDbContext.SaveChanges();
+            return Redirect("/Admin/Student/Index");
+        }
     }
 }

@@ -59,6 +59,8 @@ namespace aspPortoWebsite
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            //bu asagidaki yazilmalidi yoxsa login olanda adi gelib dusmeyecek home sehifesine
+            app.UseAuthentication();
             app.UseStaticFiles();
 
             app.UseRouting();

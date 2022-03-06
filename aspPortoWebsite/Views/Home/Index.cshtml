@@ -1,7 +1,6 @@
 ﻿@*@model IList<Category>*@
 
 @model HomeVM
-
 @*slide seklinde getmesi ucun asagidaki clasi elave edirik sadece*@
 <div class="home-slider slide-animate owl-carousel owl-theme show-nav-hover nav-big">
     @foreach (var item in Model.Sliders)
@@ -34,15 +33,12 @@
         @foreach (var item in Model.Categories)
         {
             <div class="product-category">
-                <a href="demo3-shop.html">
+                @*<a asp-controller="Home" asp-action="DemoCategory">*@
+                <a href="/Home/Details/@item.ID">
                     <figure>
                         <img src="~/images/demoes/demo3/categories/@item.Image" width="273" height="273"
                              alt="category" />
                     </figure>
-                    <div class="category-content">
-                        <h3>@item.Name</h3>
-                        <span><mark class="count">@item.Count</mark> products</span>
-                    </div>
                 </a>
             </div>
         }

@@ -1,0 +1,25 @@
+﻿
+@model Category
+<section class="container">
+    <h2 class="section-title ls-n-15 text-center pt-2 m-b-4">Shop By Category</h2>
+
+    <div class="owl-carousel owl-theme nav-image-center show-nav-hover nav-outer cats-slider appear-animate"
+         data-animation-name="fadeInUpShorter" data-animation-delay="200" data-animation-duration="1000">
+
+            <div class="product-category" style="height:870px">
+                <a href="#">
+                    <figure>
+                        <img src="~/images/demoes/demo3/categories/@Model.Image" width="273" height="273"
+                             alt="category" />
+                    </figure>
+                    <div class="category-content">
+                        <h3>@Model.Name</h3>
+                        <span><mark class="count">@Model.Count</mark> products</span>
+                    </div>
+                    <div class="category-content">
+                        <span><mark class="count">@Html.Raw(Model.Description)</mark> </span>
+                    </div>
+                </a>
+            </div>
+    </div>
+</section>
