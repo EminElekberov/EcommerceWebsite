@@ -1,3 +1,4 @@
+using aspPortoWebsite.Extension;
 using aspPortoWebsite.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +33,12 @@ namespace aspPortoWebsite
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<PortoDbContext>();
+                .AddEntityFrameworkStores<PortoDbContext>()
+                .AddTokenProvider<DataProtectorTokenProvider<User>>(TokenOptions.DefaultProvider);
+
+
+            services.AddScoped<IEmailService, EmailService>();
+
 
             services.Configure<IdentityOptions>(options =>
             {

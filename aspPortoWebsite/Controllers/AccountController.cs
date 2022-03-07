@@ -1,10 +1,12 @@
-﻿using aspPortoWebsite.Models;
+﻿using aspPortoWebsite.Extension;
+using aspPortoWebsite.Models;
 using aspPortoWebsite.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,11 +17,16 @@ namespace aspPortoWebsite.Controllers
         private readonly PortoDbContext dbContext;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountController(PortoDbContext _dbContext, UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly IEmailService _emailService;
+        public AccountController(PortoDbContext _dbContext,
+            UserManager<User> userManager,
+            SignInManager<User> signInManager,
+            IEmailService emailService)
         {
             dbContext = _dbContext;
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailService = emailService;
         }
         public IActionResult Login()
         {
@@ -141,5 +148,60 @@ namespace aspPortoWebsite.Controllers
             await _signInManager.SignInAsync(user, true);
             return RedirectToAction("Index", "Home");
         }
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordVM forgetVM)
+        {
+            User user =await _userManager.FindByEmailAsync(forgetVM.Email);
+            if (user==null)
+            {
+                ModelState.AddModelError("", "email was not found");
+                return View();
+            }
+            string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            string callback = Url.Action("resetpassword", "account", new { token, email = user.Email }, Request.Scheme);
+            string body = string.Empty;
+            using (StreamReader reader=new StreamReader("wwwroot/templates/forgetpasswod.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{{url}}", callback);
+             _emailService.Send(user.Email, "Reset Password", body);
+            return RedirectToAction("Login","Account");
+        }
+
+
+        public IActionResult ResetPassword(string token, string email)
+        {
+            ResetPasswordVM resetPasswordVM = new ResetPasswordVM
+            {
+                Token = token,
+                Email = email
+            };
+            return View(resetPasswordVM);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordVM passwordVM)
+        {
+            if (!ModelState.IsValid) return View(passwordVM);
+            User user = await _userManager.FindByEmailAsync(passwordVM.Email);
+            var result = await _userManager.ResetPasswordAsync(user, passwordVM.Token, passwordVM.Password);
+            if (!result.Succeeded)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError("", item.Description);
+                }
+                return View(passwordVM);
+            }
+            return RedirectToAction("Login", "Account");
+
+        }
+
     }
 }
