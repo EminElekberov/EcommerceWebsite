@@ -88,6 +88,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                     var newImg = await slider.Photo.SaveAsync(env.WebRootPath, folder);
                     FileExtension.DeleteImage(env.WebRootPath, folder, sliderDb.Image);
                     sliderDb.Image = newImg;
+                    //
                 }
                 catch (Exception e)
                 {
