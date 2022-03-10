@@ -88,4 +88,5 @@ C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\bin\Debug\netcoreapp3.1\Mi
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgetPassword.cshtml.g.cs
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Account\ResetPassword.cshtml.g.cs
-C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Role\Index.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Role\ManageUserRoles.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Account\ConfirmEmail.cshtml.g.cs

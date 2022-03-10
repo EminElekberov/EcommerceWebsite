@@ -66,6 +66,16 @@ namespace aspPortoWebsite.Controllers
                     return View();
                 }
             }
+
+            string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            string callback = Url.Action("ConfirmEmail", "account", new { token, email = user.Email }, Request.Scheme);
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader("wwwroot/templates/forgetpasswod.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{{url}}", callback);
+            _emailService.Send(user.Email, "Reset Password", body);
             await _userManager.AddToRoleAsync(user, "User");
             await _signInManager.SignInAsync(user, true);
             return RedirectToAction("Index","Home");
@@ -203,5 +213,29 @@ namespace aspPortoWebsite.Controllers
 
         }
 
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail(string token, string email)
+        {
+            if (email == null || token == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"The User ID {email} is invalid";
+                return View("NotFound");
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                return View();
+            }
+
+            ViewBag.ErrorTitle = "Email cannot be confirmed";
+            return View("Error");
+        }
     }
 }
