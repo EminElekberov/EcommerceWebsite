@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace aspPortoWebsite.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class RoleController : Controller
     {
         private readonly PortoDbContext _portoDbContext;
@@ -26,8 +27,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var group = _portoDbContext.UserRoles.Include(x => x.UserId).Include(d => d.RoleId).ToList();
-            return View(group);
+            return View(_roleManager.Roles);
         }
         [HttpGet]
         public async Task<IActionResult> ManageUserRoles(string id)
@@ -74,6 +74,26 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             }
            //result = await _userManager.AddToRoleAsync(user, models.Where(x => x.IsSelected).Select(y => y.RoleName));
             return Redirect("/Admin/Slider/Index");
+        }
+    
+        public async Task<IActionResult> Update(string id)
+        {
+            IdentityRole identityRole =await _roleManager.FindByIdAsync(id);
+            if (identityRole==null)
+            {
+                return NotFound();
+            }
+            return View(identityRole);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(IdentityRole identityRole)
+        {
+            IdentityRole identity = await _portoDbContext.Roles.FirstOrDefaultAsync(i=>i.Id==identityRole.Id);
+            identity.Name = identityRole.Name;
+            identity.NormalizedName = identityRole.Name.ToUpper();
+            await _portoDbContext.SaveChangesAsync();
+            return Redirect("/Admin/Role/Index");
         }
     }
 }
