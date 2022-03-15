@@ -15,6 +15,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
     //[Authorize(Roles ="Admin")]
     public class SliderController : Controller
     {
+
         private readonly PortoDbContext dbContext;
         private readonly IWebHostEnvironment env;
         public SliderController(PortoDbContext _dbContext, IWebHostEnvironment _env)
