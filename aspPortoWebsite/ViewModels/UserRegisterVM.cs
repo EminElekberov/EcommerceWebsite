@@ -23,6 +23,5 @@ namespace aspPortoWebsite.ViewModels
         [Compare(nameof(Password))]//bu yoxlayirki yuxarda yazilan  paswordla confim[aswordun eynidimi
         public string ConfirmPassword { get; set; }
         public bool Gender { get; set; }
-
     }
 }
