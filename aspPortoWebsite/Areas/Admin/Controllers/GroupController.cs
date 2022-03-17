@@ -19,6 +19,46 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         {
             return View(dbContext.Groups.ToList());
         }
-        
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Create(string name)
+        {
+            if (name == null)
+            {
+                return Json(new
+                {
+                    status = 400
+                });
+            }
+            Group group = new Group
+            {
+                Fullname = name
+            };
+
+
+            await dbContext.Groups.AddAsync(group);
+            await dbContext.SaveChangesAsync();
+
+            return Json(new
+            {
+                status = 200
+            });
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null) return NotFound();
+            Group grp = await dbContext.Groups.FindAsync(id);
+            if (grp == null) return NotFound();
+            dbContext.Groups.Remove(grp);
+            await dbContext.SaveChangesAsync();
+            return Redirect("/Admin/Groups/Index");
+        }
+
     }
 }
