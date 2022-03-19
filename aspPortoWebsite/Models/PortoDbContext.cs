@@ -16,6 +16,8 @@ namespace aspPortoWebsite.Models
         public DbSet<Student> Students { get; set; }
         public DbSet<StudentAdress> StudentAdresses { get; set; }
         public DbSet<Group> Groups { get; set; } 
+        public DbSet<Work> Works { get; set; } 
+        public DbSet<tests> test { get; set; } 
         //public DbSet<Teacher> Teacher { get; set; } 
        // public DbSet<Hobby> Hobby { get; set; } 
        // public DbSet<TechertoHobby> TechertoHobby { get; set; } 
