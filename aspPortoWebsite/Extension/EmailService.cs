@@ -25,7 +25,7 @@ namespace aspPortoWebsite.Extension
             email.Body = new TextPart(TextFormat.Html) { Text=html};
 
             //send message
-            var smtp = new SmtpClient();
+            SmtpClient smtp = new SmtpClient();
             smtp.Connect("smtp.gmail.com",587,SecureSocketOptions.StartTls);
             smtp.Authenticate("aspporto99@gmail.com", "aspnetc638");
             smtp.Send(email);
