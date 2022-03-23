@@ -1,5 +1,6 @@
 ﻿using aspPortoWebsite.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,15 +50,70 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                 status = 200
             });
         }
-
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<JsonResult> Edit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return Json(new
+                {
+                    status = 404
+                });
+            }
+
+            var group = await dbContext.Groups.FindAsync(id);
+            if (group == null)
+            {
+                return Json(new
+                {
+                    status = 404
+                });
+            }
+
+            return Json(group);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> Edit(int id,string name)
+        {
+            var groups = await dbContext.Groups.FirstOrDefaultAsync(p => p.Id == id);
+            if (groups == null)
+            {
+                return Json(new
+                {
+                    status = 404
+                });
+            }
+            groups.Fullname =name;
+            dbContext.Update(groups);
+            await dbContext.SaveChangesAsync();
+            return Json(new
+            {
+                status = 200
+            });
+        }
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> Delete(int? id)
+        {
+            if (id == null) return Json(new
+            {
+                status = 404
+            });
             Group grp = await dbContext.Groups.FindAsync(id);
-            if (grp == null) return NotFound();
+            if (grp == null)
+            {
+                return Json(new
+                {
+                    status = 404
+                });
+            }
+
             dbContext.Groups.Remove(grp);
             await dbContext.SaveChangesAsync();
-            return Redirect("/Admin/Groups/Index");
+            return Json(new
+            {
+                status = 200
+            });
         }
 
     }
