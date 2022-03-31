@@ -1,9 +1,11 @@
 ﻿using aspPortoWebsite.Extension;
 using aspPortoWebsite.Models;
+using aspPortoWebsite.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +26,17 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             env = _env;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int page=1)
         {
-            return View(dbContext.Sliders.ToList());
+            //1 return View(dbContext.Sliders.ToList());
+
+            int take = 1;
+            SliderAndPagination model = new SliderAndPagination
+            {
+                sliders = await dbContext.Sliders.Skip(take * (page - 1)).Take(take).ToListAsync(),
+                Pagination = new PaginationModel(await dbContext.Sliders.CountAsync(), take, page)
+            };
+            return View(model);
         }
 
         [HttpGet]

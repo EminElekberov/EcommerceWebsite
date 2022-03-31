@@ -1,0 +1,23 @@
+﻿@model List<Slider>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <th scope="row">@item.ID</th>
+        <td>
+            <img width="200" height="150" src="~/images/demoes/demo3/slider/@item.Image" alt="Alternate Text" />
+        </td>
+        <td>@Html.Raw(item.TrendWord)</td>
+        <td>@item.DisCount</td>
+        <td>@Html.Raw(item.ClothType)</td>
+        <td>@item.Price</td>
+
+        <td>
+            <a href="/Admin/Slider/Edit/@item.ID" style="color:red"><i class="fas fa-edit"></i></a>
+            <a href="/Admin/Slider/Delete/@item.ID" onclick="return confirm('Silmek isdediyinizden eminsinizmi?')" style="color:red"><i class="fas fa-trash-alt"></i></a>
+            <br />
+            <a href="/Admin/Slider/Details/@item.ID" style="color:red">Etrafli</a>
+        </td>
+    </tr>
+
+}
