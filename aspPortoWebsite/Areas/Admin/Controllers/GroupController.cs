@@ -1,4 +1,6 @@
-﻿using aspPortoWebsite.Models;
+﻿using aspPortoWebsite.Extension;
+using aspPortoWebsite.Models;
+using aspPortoWebsite.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,9 +18,19 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         {
             dbContext = _dbContext;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int page=1)
         {
-            return View(dbContext.Groups.ToList());
+            int take = 3;
+            //    var model = dbContext.Groups.OrderBy(x => x.Id).AsQueryable();
+            //    int pageSize = 3;
+            //    return View(await PaginatedList<Group>.CreateAsync(model.AsNoTracking(), id ?? 1,pageSize));
+
+            GroupsAndPaginationVM model = new GroupsAndPaginationVM
+            {
+                Groups = await dbContext.Groups.Skip(take * (page - 1)).Take(take).ToListAsync(),
+                Pagination = new PaginationModel(await dbContext.Groups.CountAsync(), take, page)
+            };
+            return View(model);
         }
         [HttpGet]
         public IActionResult Create()

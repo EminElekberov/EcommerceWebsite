@@ -1,0 +1,21 @@
+﻿@*@model aspPortoWebsite.Extension.PaginetList<Group>*@
+
+@model List<Group>
+@foreach (var item in Model)
+{
+
+
+    //
+    <tr>
+        <td scope="row">@item.Fullname</td>
+        <td>
+            <button type="button" class="btn btn-primary btnEdit" data-id="@item.Id" data-bs-toggle="modal" data-bs-target="#editModal">
+                Edit
+            </button>
+            <a href="/Admin/Group/Delete/@item.Id" class="delete-btn" style="color:red">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+        </td>
+    </tr>
+
+}
