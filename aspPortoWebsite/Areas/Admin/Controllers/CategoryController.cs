@@ -88,6 +88,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                     ModelState.AddModelError("Error", "Unexpected error");
                     throw;
                 }
+
             }
             categoryDb.Description = category.Description;
             categoryDb.Count = category.Count;
