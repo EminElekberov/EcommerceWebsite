@@ -10,5 +10,6 @@ namespace aspPortoWebsite.Models
         public int Id { get; set; }
         public string Fullname { get; set; }
         public virtual ICollection<Student> Students { get; set; }
+
     }
 }
