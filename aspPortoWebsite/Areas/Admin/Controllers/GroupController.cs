@@ -110,6 +110,8 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             if (id == null) return Json(new
             {
                 status = 404
+
+
             });
             Group grp = await dbContext.Groups.FindAsync(id);
             if (grp == null)
