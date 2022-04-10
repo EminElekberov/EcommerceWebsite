@@ -92,7 +92,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
 
             }
             categoryDb.Description = category.Description;
-            categoryDb.Count = category.Count;
             categoryDb.Name = category.Name;
             await portoDbContext.SaveChangesAsync();
             return Redirect("/Admin/Category/Index");

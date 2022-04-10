@@ -1,5 +1,9 @@
 using aspPortoWebsite.Extension;
+using aspPortoWebsite.Fluent;
 using aspPortoWebsite.Models;
+using aspPortoWebsite.ViewModels;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,7 +31,8 @@ namespace aspPortoWebsite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation();
+            services.AddTransient<IValidator<StudentVm>, StudentValidator>();
             services.AddDbContext<PortoDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));

@@ -30,18 +30,8 @@
          data-animation-name="fadeInUpShorter" data-animation-delay="200" data-animation-duration="1000">
 
 
-        @foreach (var item in Model.Categories)
-        {
-            <div class="product-category">
-                @*<a asp-controller="Home" asp-action="DemoCategory">*@
-                <a href="/Home/Details/@item.ID">
-                    <figure>
-                        <img src="~/images/demoes/demo3/categories/@item.Image" width="273" height="273"
-                             alt="category" />
-                    </figure>
-                </a>
-            </div>
-        }
+        @await Component.InvokeAsync("VcCategory")
+
 
     </div>
 </section>

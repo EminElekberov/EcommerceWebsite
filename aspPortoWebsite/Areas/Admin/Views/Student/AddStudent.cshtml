@@ -8,6 +8,8 @@
 </style>
 }
 <form method="post">
+    <div asp-validation-summary="All" style="color:red"></div>
+
     <div class="mb-3">
         <label>Group</label>
         <select asp-for="GroupId" class="form-control">
@@ -16,6 +18,7 @@
                 <option value="@item.Id">@item.Fullname</option>
             }
         </select>
+        <span asp-validation-for="GroupId"></span>
     </div>
     <div class="mb-3">
         <label>Fullname</label>

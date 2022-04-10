@@ -36,6 +36,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddStudent(StudentVm model)
         {
+            ViewBag.Group = portoDbContext.Groups.ToList();
             if (!ModelState.IsValid)
             {
                 return View(model);

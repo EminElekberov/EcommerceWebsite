@@ -100,3 +100,8 @@ C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Ra
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\GroupsPartial.cshtml.g.cs
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_PaginationPartial.cshtml.g.cs
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\SliderPartial.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\VcCategory\Default.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\aspPortoWebsite.MvcApplicationPartsAssemblyInfo.cs

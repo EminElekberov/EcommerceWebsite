@@ -17,9 +17,6 @@ namespace aspPortoWebsite.Models
 
         [Required, StringLength(15)]
         public string Name { get; set; }
-
-        [Required]
-        public int Count { get; set; }
         [Required]
         public string Description { get; set; }
         [NotMapped]//menasi odurki database bunu nezere alma
