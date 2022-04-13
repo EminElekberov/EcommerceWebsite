@@ -42,6 +42,7 @@ namespace aspPortoWebsite
                 .AddTokenProvider<DataProtectorTokenProvider<User>>(TokenOptions.DefaultProvider);
 
 
+
             services.AddScoped<IEmailService, EmailService>();
 
 
