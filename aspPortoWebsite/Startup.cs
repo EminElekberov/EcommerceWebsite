@@ -37,6 +37,7 @@ namespace aspPortoWebsite
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<PortoDbContext>()
                 .AddTokenProvider<DataProtectorTokenProvider<User>>(TokenOptions.DefaultProvider);
