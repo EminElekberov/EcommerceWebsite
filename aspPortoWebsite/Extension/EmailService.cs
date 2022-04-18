@@ -16,7 +16,7 @@ namespace aspPortoWebsite.Extension
     public class EmailService : IEmailService
     {
         public void Send(string to, string subject, string html)
-        {
+        { 
             //create message
             MimeMessage email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("aspporto99@gmail.com"));//kimden email gedecek bura yaziriq 

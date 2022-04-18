@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace aspPortoWebsite.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    
+
     public class AccountController : Controller
     {
         private readonly PortoDbContext _portoDbContext;
@@ -42,7 +42,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var result = await _signInManager.PasswordSignInAsync(user.Email, user.PasswordHash, false,false);
+            var result = await _signInManager.PasswordSignInAsync(user.Email, user.PasswordHash, false, false);
             if (result.Succeeded)
             {
                 return Redirect("/Admin/Slider/Index");
@@ -56,15 +56,15 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async  Task<IActionResult> Register(Register register)
+        public async Task<IActionResult> Register(Register register)
         {
             if (_userManager.FindByEmailAsync(register.Email).Result == null)
             {
                 User identityUser = new User()
                 {
-                    UserName=register.Email
+                    UserName = register.Email
                 };
-                IdentityResult result =  await _userManager.CreateAsync(identityUser,register.Password);
+                IdentityResult result = await _userManager.CreateAsync(identityUser, register.Password);
                 if (result.Succeeded)
                 {
                     _userManager.AddToRoleAsync(identityUser, "User").Wait();
@@ -76,9 +76,9 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         }
         public async Task SeedRole()
         {
-            if (!await _roleManager.RoleExistsAsync(roleName:"Admin"))
+            if (!await _roleManager.RoleExistsAsync(roleName: "Admin"))
             {
-                await _roleManager.CreateAsync(new IdentityRole(roleName:"Admin"));
+                await _roleManager.CreateAsync(new IdentityRole(roleName: "Admin"));
             }
             if (!await _roleManager.RoleExistsAsync(roleName: "User"))
             {
@@ -87,7 +87,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         }
         public async Task SeedAdmin()
         {
-            if (_userManager.FindByEmailAsync("admin@gmail.com").Result==null)
+            if (_userManager.FindByEmailAsync("admin@gmail.com").Result == null)
             {
                 User identityUser = new User()
                 {
@@ -102,6 +102,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                     await _signInManager.SignInAsync(identityUser, true);
                 }
             }
-        } 
+        }
     }
 }
