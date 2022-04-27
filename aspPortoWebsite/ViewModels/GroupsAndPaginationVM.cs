@@ -9,7 +9,6 @@ namespace aspPortoWebsite.ViewModels
 {
     public class GroupsAndPaginationVM
     {
-
         public List<Group> Groups { get; set; }
         public PaginationModel Pagination { get; set; }
     }
