@@ -9,6 +9,7 @@ namespace aspPortoWebsite.Models
 {
     public class PortoDbContext:IdentityDbContext<User>
     {
+
         public PortoDbContext(DbContextOptions<PortoDbContext> options):base(options) { }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Slider> Sliders { get; set; }
