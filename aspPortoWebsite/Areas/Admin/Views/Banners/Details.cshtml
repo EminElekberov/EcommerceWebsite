@@ -1,0 +1,27 @@
+﻿@model Banner
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Button Text</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <th scope="row">@Model.Id</th>
+            <td>
+                <img width="200" height="150" src="~/images/banners/@Model.Image" alt="Alternate Text" />
+            </td>
+            <td>@Model.Title</td>
+            <td>@Html.Raw(Model.Description)</td>
+            <td>@Html.Raw(Model.ButtonText)</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,6 +1,6 @@
 ﻿@model Category
 
-@section stylesCategory{ @*bunu ona gore yazdiqki burda yazilan css shared papkasinda loayout.cshtml icerisinde render ede bilek*@
+@section styles{ @*bunu ona gore yazdiqki burda yazilan css shared papkasinda loayout.cshtml icerisinde render ede bilek*@
 <style>
     label {
         color: red;
@@ -8,36 +8,54 @@
 </style>
 }
 <form method="post" enctype="multipart/form-data">
-    @*<div asp-validation-summary="ModelOnly" style="color:red"></div>*@
+    <div class="mb-3">
+        <label>Category</label>
+        <select asp-for="ProductsCategoryId" class="form-control" style="width:600px;">
+            @foreach (var item in ViewBag.Categorys)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
     <div class="mb-3">
         <label>Image</label>
         <input type="file" class="form-control" asp-for="Photo">
         <span asp-validation-for="Photo" style="color:red"></span>
     </div>
-
     <div class="mb-3">
         <label>Name</label>
-        <input type="text" class="form-control" asp-for="Name">
+        <textarea class="form-control" asp-for="Name"></textarea>
         <span asp-validation-for="Name" style="color:red"></span>
     </div>
-
-
+    <div class="mb-3">
+        <label>PresentPrice</label>
+        <input type="text" class="form-control" asp-for="PresentPrice">
+        <span asp-validation-for="PresentPrice" style="color:red"></span>
+    </div>
+    <div class="mb-3">
+        <label>PastPrice</label>
+        <input type="text" class="form-control" asp-for="PastPrice">
+        <span asp-validation-for="PastPrice" style="color:red"></span>
+    </div>
+    <div class="mb-3">
+        <label>Sku</label>
+        <input type="text" class="form-control" asp-for="Sku">
+        <span asp-validation-for="Sku" style="color:red"></span>
+    </div>
     <div class="mb-3">
         <label>Description</label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        @*<input type="text" class="form-control" asp-for="Description">*@
+        <input type="text" class="form-control" asp-for="Description">
         <span asp-validation-for="Description" style="color:red"></span>
+    </div>
+    <div class="mb-3">
+        <label>SizeGuid</label>
+        <input type="text" class="form-control" asp-for="SizeGuid">
+        <span asp-validation-for="SizeGuid" style="color:red"></span>
+    </div>
+    <div class="mb-3">
+        <label>AdditionalInformation</label>
+        <input type="text" class="form-control" asp-for="AdditionalInformation">
+        <span asp-validation-for="AdditionalInformation" style="color:red"></span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-@section scriptsCategory{
-
-    <partial name="_ValidationScriptsPartial" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/32.0.0/ckeditor.min.js"></script>
-    <script>
-        ClassicEditor.create(document.querySelector('#Description')).catch(error => {
-        console.error(error);
-    });
-    </script>
-}

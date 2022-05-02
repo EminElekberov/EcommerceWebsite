@@ -1,5 +1,7 @@
 ﻿@model IList<Category>
-
+@{
+    ViewData["Title"] = "Index";
+}
 
 @if (TempData["Success"] != null)
 {
@@ -7,43 +9,54 @@
         @TempData["Success"]
     </div>
 }
-<div>
-    <a href="/Admin/Category/Create" class="btn btn-success" style="width:100%">Add new slider</a>
-</div>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Image</th>
-            <th scope="col">Name</th>
-            <th scope="col">Count</th>
-            <th scope="col">Description</th>
-            <th>CRUD</th>
-        </tr>
-    </thead>
+<div style="overflow-x: auto">
 
-    <tbody>
-
-        @foreach (var item in Model)
-        {
+    <div>
+        <a href="/Admin/Category/Create" class="btn btn-outline-info" style="width:100%">Add new student</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <th scope="row">@item.ID</th>
-                <td>
-                    <img width="200" height="150" src="~/images/demoes/demo3/categories/@item.Image" alt="Alternate Text" />
-                </td>
-                <td>@item.Name</td>
-                <td>@Html.Raw(item.Description)</td>
-
-                <td>
-                    <a href="/Admin/Category/Edit/@item.ID" style="color:red"><i class="fas fa-edit"></i></a>
-                    <a href="/Admin/Category/Delete/@item.ID" onclick="return confirm('Are you sure')"><i class="fas fa-trash-alt"></i></a>
-                    <br />
-                    <a href="/Admin/Category/Details/@item.ID" style="color:red">Etrafli</a>
-                </td>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>category Name</th>
+                <th>Present Price</th>
+                <th>Past Price</th>
+                <th>Sku</th>
+                <th>Description</th>
+                <th>Size Guid</th>
+                <th>Additional Information</th>
+                <th>Edit/Delete</th>
             </tr>
+        </thead>
+        <tbody>
 
-        }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.ID</th>
+                    <td>
+                        <img width="200" height="150" src="~/images/categories/@item.Image" alt="Alternate Text" />
+                    </td>
+                    <th scope="row">@item.Name</th>
+                    @*<th scope="row">@item.ProductCategoryies.Name</th>*@
+                    <td>@item.PresentPrice</td>
+                    <td>@Html.Raw(item.PastPrice)</td>
+                    <td>@item.Sku</td>
+                    <td>@item.Description</td>
+                    <td>@item.SizeGuid</td>
+                    <td>@item.AdditionalInformation</td>
+                    <td>
+                        <a href="/Admin/Category/Edit/@item.ID" style="color:red"><i class="fas fa-edit"></i></a>
+                        <a href="/Admin/Category/Delete/@item.ID" onclick="return confirm('Silmek istediyinizden eminsiz?')" style="color:red">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
 
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
+</div>

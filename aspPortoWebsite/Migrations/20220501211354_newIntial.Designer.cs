@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using aspPortoWebsite.Models;
 
 namespace aspPortoWebsite.Migrations
 {
     [DbContext(typeof(PortoDbContext))]
-    partial class PortoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220501211354_newIntial")]
+    partial class newIntial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,30 +152,6 @@ namespace aspPortoWebsite.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("aspPortoWebsite.Models.Banner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ButtonText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Banners");
-                });
-
             modelBuilder.Entity("aspPortoWebsite.Models.Category", b =>
                 {
                     b.Property<int>("ID")
@@ -298,7 +276,7 @@ namespace aspPortoWebsite.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("productCategories");
+                    b.ToTable("ProductCategory");
                 });
 
             modelBuilder.Entity("aspPortoWebsite.Models.Slider", b =>

@@ -30,10 +30,22 @@
          data-animation-name="fadeInUpShorter" data-animation-delay="200" data-animation-duration="1000">
 
 
-        @await Component.InvokeAsync("VcCategory")
+        <div class="product-category">
+            @foreach (var item in Model.Categories)
+            {
 
-
-    </div>
+                <a href="demo3-shop.html">
+                    <figure>
+                        <img src="assets/images/demoes/demo3/categories/category-1.jpg" width="273" height="273"
+                             alt="category" />
+                    </figure>
+                    <div class="category-content">
+                        <h3>@item.Name</h3>
+                        <span><mark class="count">@item.</mark> products</span>
+                    </div>
+                </a>
+            }
+        </div>
 </section>
 
 <section class="bg-gray banners-section text-center">
