@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using aspPortoWebsite.Models;
 
 namespace aspPortoWebsite.Migrations
 {
     [DbContext(typeof(PortoDbContext))]
-    partial class PortoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220502193907_newservice")]
+    partial class newservice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
