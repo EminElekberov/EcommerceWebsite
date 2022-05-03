@@ -1,0 +1,27 @@
+﻿
+@model ContactsForm
+<table class="table table-bordered">
+    <thead class="bg-password-image">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            @if (Model.MyOpinion != null)
+            {
+                <th>My Opinion</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr class="bg-gradient-light">
+            <th scope="row">@Model.Id</th>
+            <td>@Html.Raw(Model.Email)</td>
+            @if (Model.MyOpinion != null)
+            {
+                <td>@Html.Raw(Model.MyOpinion)</td>
+            }
+        </tr>
+
+
+    </tbody>
+</table>

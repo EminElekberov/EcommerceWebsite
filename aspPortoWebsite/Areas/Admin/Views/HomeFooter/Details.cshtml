@@ -1,0 +1,28 @@
+﻿
+@model HomeFooter
+
+<div style="overflow-x:scroll">
+
+
+    <table class="table table-bordered" style="width:1500px;">
+        <thead class="bg-register-image">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Address</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">WorkHours</th>
+            </tr>
+        </thead>
+        <tbody>
+
+                <tr>
+                    <th scope="row">@Model.Id</th>
+                    <td>@Html.Raw(Model.Address)</td>
+                    <td>@Html.Raw(Model.Email)</td>
+                    <td>@Model.Phone</td>
+                    <td>@Model.WorkHours</td>
+                </tr>
+        </tbody>
+    </table>
+</div>

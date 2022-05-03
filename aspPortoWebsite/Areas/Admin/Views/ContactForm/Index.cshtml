@@ -1,0 +1,38 @@
+﻿
+@model IList<ContactsForm>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData["Success"]
+    </div>
+}
+<table class="table table-bordered table-striped">
+    <thead class="bg-login-image">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">My Opinion</th>
+            <th>Edit/Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@Html.Raw(item.Email)</td>
+                <td>@Html.Raw(item.MyOpinion)</td>
+
+                <td>
+                    <a class="btn btn-success" href="/Admin/ContactForm/CreateOpinion/@item.Id">Write opinion</a>
+                    <a class="btn btn-danger" href="/Admin/ContactForm/Delete/@item.Id"><i class="fas fa-trash-alt"></i></a>
+                    <a class="btn btn-primary" href="/Admin/ContactForm/Details/@item.Id" style="color:red">Etrafli</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

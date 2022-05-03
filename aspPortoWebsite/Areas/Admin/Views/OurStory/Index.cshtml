@@ -1,0 +1,45 @@
+﻿
+@model IList<OurStory>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData["Success"]
+    </div>
+}
+<div style="overflow-x:scroll">
+
+    <div style="margin-bottom:50px">
+        <a href="/Admin/Ourstory/Create" class="btn btn-outline-warning" style="width:1500px">Add new slider</a>
+    </div>
+
+    <table class="table table-bordered" style="width:1500px;">
+        <thead class="bg-register-image">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Description</th>
+                <th scope="col">Phorizm</th>
+                <th>Edit/Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Description</td>
+                    <td>@item.Phorizm</td>
+                    <td>
+                        <a href="/Admin/OurStory/Edit/@item.Id" style="color:red"><i class="fas fa-edit"></i></a>
+                        <a href="/Admin/OurStory/Delete/@item.Id" onclick="return confirm('Silmek isdediyinizden eminsinizmi?')" style="color:red"><i class="fas fa-trash-alt"></i></a>
+                        <br />
+                        <a href="/Admin/OurStory/Details/@item.Id" style="color:red">Etrafli</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

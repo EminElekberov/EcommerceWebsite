@@ -22,7 +22,10 @@ namespace aspPortoWebsite.Models
         public DbSet<Banner> Banners { get; set; } 
         public DbSet<ProductCategory> productCategories { get; set; } 
         public DbSet<UserToProduct> UserToProducts { get; set; } 
+        public DbSet<ContactsForm> ContactsForms { get; set; } 
         public DbSet<Service> Services { get; set; } 
+        public DbSet<HomeFooter> HomeFooters { get; set; } 
+        public DbSet<OurStory> OurStories { get; set; } 
         //public DbSet<Teacher> Teacher { get; set; } 
        // public DbSet<Hobby> Hobby { get; set; } 
        // public DbSet<TechertoHobby> TechertoHobby { get; set; } 
