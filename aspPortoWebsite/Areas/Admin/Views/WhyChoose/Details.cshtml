@@ -1,0 +1,27 @@
+﻿
+@model WhyChoose
+
+<div style="overflow-x:scroll">
+
+
+    <table class="table table-bordered" style="width:1500px;">
+        <thead class="bg-register-image">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">IconLink</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+                <tr>
+                    <th scope="row">@Model.Id</th>
+                    <th scope="row">@Html.Raw(Model.IconLink)</th>
+                    <td>@Html.Raw(Model.Title)</td>
+                    <td>@Model.Description</td>
+                </tr>
+        </tbody>
+    </table>
+</div>

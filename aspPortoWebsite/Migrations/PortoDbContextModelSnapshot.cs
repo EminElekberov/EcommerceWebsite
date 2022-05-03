@@ -150,6 +150,24 @@ namespace aspPortoWebsite.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("aspPortoWebsite.Models.AskedQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AskedQuestions");
+                });
+
             modelBuilder.Entity("aspPortoWebsite.Models.Banner", b =>
                 {
                     b.Property<int>("Id")
@@ -201,6 +219,9 @@ namespace aspPortoWebsite.Migrations
                     b.Property<string>("PastPrice")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Percent")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PresentPrice")
                         .HasColumnType("nvarchar(max)");
 
@@ -223,6 +244,30 @@ namespace aspPortoWebsite.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("aspPortoWebsite.Models.Clients", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Job")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("aspPortoWebsite.Models.ContactsForm", b =>
                 {
                     b.Property<int>("Id")
@@ -234,7 +279,13 @@ namespace aspPortoWebsite.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("MyOpinion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -294,6 +345,30 @@ namespace aspPortoWebsite.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HomeFooters");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.MyBlogCollection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MyBlogCollections");
                 });
 
             modelBuilder.Entity("aspPortoWebsite.Models.OurStory", b =>
@@ -608,6 +683,27 @@ namespace aspPortoWebsite.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserToProducts");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.WhyChoose", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IconLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WhyChooses");
                 });
 
             modelBuilder.Entity("aspPortoWebsite.Models.Work", b =>

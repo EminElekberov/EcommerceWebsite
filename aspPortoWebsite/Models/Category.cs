@@ -19,6 +19,7 @@ namespace aspPortoWebsite.Models
         public string Name { get; set; }
         public string PresentPrice { get; set; }
         public string PastPrice { get; set; }
+        public string Percent { get; set; }
         public string Sku { get; set; }
         [Required]
         public string Description { get; set; }

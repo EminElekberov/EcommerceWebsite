@@ -9,9 +9,11 @@ namespace aspPortoWebsite.Models
     public class ContactsForm
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        public string Message { get; set; }
         public string MyOpinion { get; set; }
     }
 }

@@ -26,6 +26,10 @@ namespace aspPortoWebsite.Models
         public DbSet<Service> Services { get; set; } 
         public DbSet<HomeFooter> HomeFooters { get; set; } 
         public DbSet<OurStory> OurStories { get; set; } 
+        public DbSet<WhyChoose> WhyChooses { get; set; } 
+        public DbSet<Clients> Clients { get; set; } 
+        public DbSet<MyBlogCollection> MyBlogCollections { get; set; } 
+        public DbSet<AskedQuestion> AskedQuestions { get; set; } 
         //public DbSet<Teacher> Teacher { get; set; } 
        // public DbSet<Hobby> Hobby { get; set; } 
        // public DbSet<TechertoHobby> TechertoHobby { get; set; } 

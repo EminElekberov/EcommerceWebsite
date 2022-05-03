@@ -1,0 +1,26 @@
+﻿@model MyBlogCollection
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Image</th>
+            <th scope="col">Date</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+            <tr>
+                <th scope="row">@Model.Id</th>
+                <td>
+                    <img width="200" height="150" src="~/images/blog/@Model.Image" alt="Alternate Text" />
+                </td>
+                <td>@Model.Date</td>
+                <td>@Model.Title</td>
+                <td>@Html.Raw(Model.Description)</td>
+            </tr>
+    </tbody>
+</table>

@@ -131,3 +131,17 @@ C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Ra
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\OurStory\Details.cshtml.g.cs
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\OurStory\Edit.cshtml.g.cs
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\OurStory\Index.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\WhyChoose\Create.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\WhyChoose\Details.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\WhyChoose\Edit.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\WhyChoose\Index.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Clients\Create.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Clients\Details.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Clients\Edit.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Clients\Index.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MyBlog\Create.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MyBlog\Details.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MyBlog\Edit.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MyBlog\Index.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Index.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Categories\Details.cshtml.g.cs
