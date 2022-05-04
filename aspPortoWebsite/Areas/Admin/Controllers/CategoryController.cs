@@ -1,9 +1,13 @@
 ﻿using aspPortoWebsite.Extension;
 using aspPortoWebsite.Models;
+using aspPortoWebsite.Repository;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,16 +18,18 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
     {
         private readonly PortoDbContext _dbcontext;
         private readonly IWebHostEnvironment env;
-
-        public CategoryController(PortoDbContext portoDbContext, IWebHostEnvironment _env)
+        private readonly IBookRepository _bookRepository = null;
+        public CategoryController(PortoDbContext portoDbContext, IWebHostEnvironment _env, IBookRepository bookRepository)
         {
             _dbcontext = portoDbContext;
             env = _env;
+            _bookRepository = bookRepository;
+
         }
 
         public IActionResult Index()
         {
-            var group = _dbcontext.Categories.Include(x => x.ProductCategoryies).ToList();
+            var group = _dbcontext.Categories.ToList();
             return View(group);
         }
         [HttpGet]
@@ -32,24 +38,86 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             ViewBag.Categorys = _dbcontext.productCategories.ToList();
             return View();
         }
+        #region
+        //[HttpPost]
+        //public async Task<IActionResult> Create(Category cases)
+        //{
+        //    #region
+        //    if (!ModelState.IsValid && cases.Photo == null)
+        //    {
+        //        return Redirect("/NOtfound/ErrorPage");
+        //    }
+        //    if (cases.GalleryFiles != null)
+        //    {
+        //        string folders = "images/gallery/";
+
+        //        cases.Gallery = new List<GalleryModel>();
+
+        //        foreach (var file in cases.GalleryFiles)
+        //        {
+        //            var gallery = new GalleryModel()
+        //            {
+        //                Name = file.FileName,
+        //                URL = await UploadImage(folders, file)
+        //            };
+        //            cases.Gallery.Add(gallery);
+        //        }
+        //    }
+        //    if (!cases.Photo.IsImage())
+        //    {
+        //        ModelState.AddModelError("photo", "Img formati dogru deyil");
+        //        return View(cases);
+        //    }
+        //    string folder = @"images\categories";
+        //    var newImg = await cases.Photo.SaveAsync(env.WebRootPath, folder);
+        //    cases.Image = newImg;
+        //    _dbcontext.Categories.Add(cases);
+        //    _dbcontext.SaveChanges();
+        //    return Redirect("/Admin/portfol/Index");
+        //    #endregion
+        //}
+        #endregion
         [HttpPost]
-        public async Task<IActionResult> Create(Category cases)
+        public async Task<IActionResult> Create(Category bookModel)
         {
-            if (!ModelState.IsValid && cases.Photo == null)
+            if (!ModelState.IsValid)
             {
-                return Redirect("/NOtfound/ErrorPage");
+                if (bookModel.Photo != null)
+                {
+                    string folder = "images/categories/";
+                    bookModel.Image = await UploadImage(folder, bookModel.Photo);
+                }
+                if (bookModel.GalleryFiles != null)
+                {
+                    string folder = "images/gallery/";
+
+                    bookModel.Gallery = new List<GalleryModel>();
+
+                    foreach (var file in bookModel.GalleryFiles)
+                    {
+                        var gallery = new GalleryModel()
+                        {
+                            Name = await UploadImage(folder,file)
+                        };
+                        bookModel.Gallery.Add(gallery);
+                    }
+                }
+                int id = await _bookRepository.AddNewBook(bookModel);
+                if (id > 0)
+                {
+                    return RedirectToAction(nameof(Create), new { isSuccess = true, bookId = id });
+                }
             }
-            if (!cases.Photo.IsImage())
-            {
-                ModelState.AddModelError("photo", "Img formati dogru deyil");
-                return View(cases);
-            }
-            string folder = @"images\categories";
-            var newImg = await cases.Photo.SaveAsync(env.WebRootPath, folder);
-            cases.Image = newImg;
-            _dbcontext.Categories.Add(cases);
-            _dbcontext.SaveChanges();
-            return Redirect("/Admin/portfol/Index");
+
+            return View();
+        }
+        private async Task<string> UploadImage(string folderPath, IFormFile file)
+        {
+            string result = Guid.NewGuid().ToString() + "_" + file.FileName;
+            folderPath += result;
+            string serverFolder = Path.Combine(env.WebRootPath, folderPath);
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            return result;
         }
         public async Task<IActionResult> Delete(int? id)
         {

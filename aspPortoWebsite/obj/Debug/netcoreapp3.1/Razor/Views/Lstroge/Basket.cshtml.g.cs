@@ -28,13 +28,27 @@ using aspPortoWebsite.Models;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\Views\_ViewImports.cshtml"
+using aspPortoWebsite.Models.ForBook;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\Views\_ViewImports.cshtml"
 using aspPortoWebsite.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\Views\_ViewImports.cshtml"
+using aspPortoWebsite.Extension;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5793ed56b5551690f829cc461e0194d412ec649a", @"/Views/Lstroge/Basket.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4516c7bf99e9b01fb7aa58d13803dfebb644b4da", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f974e427b9a28649861d05df1247dfc92a82e681", @"/Views/_ViewImports.cshtml")]
     public class Views_Lstroge_Basket : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("nav-link"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -77,7 +91,7 @@ using aspPortoWebsite.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5793ed56b5551690f829cc461e0194d412ec649a5143", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5793ed56b5551690f829cc461e0194d412ec649a5536", async() => {
                 WriteLiteral(@"
     <meta charset=""UTF-8"">
     <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
@@ -121,7 +135,7 @@ using aspPortoWebsite.ViewModels;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5793ed56b5551690f829cc461e0194d412ec649a7129", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5793ed56b5551690f829cc461e0194d412ec649a7522", async() => {
                 WriteLiteral(@"
     <header>
 
@@ -141,7 +155,7 @@ using aspPortoWebsite.ViewModels;
                             </li>
                 ");
                 WriteLiteral("            <li class=\"nav-item\">\r\n                                <a class=\"nav-link\" href=\"#\">Link</a>\r\n                            </li>\r\n                            <li class=\"nav-item\">\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5793ed56b5551690f829cc461e0194d412ec649a8725", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5793ed56b5551690f829cc461e0194d412ec649a9118", async() => {
                     WriteLiteral("\r\n                                    <i class=\"fa-solid fa-cart-arrow-down\"></i> <span id=\"baketCountType\">0</span>\r\n                                ");
                 }
                 );

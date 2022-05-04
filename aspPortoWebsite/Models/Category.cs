@@ -17,8 +17,8 @@ namespace aspPortoWebsite.Models
 
         [Required, StringLength(15)]
         public string Name { get; set; }
-        public string PresentPrice { get; set; }
-        public string PastPrice { get; set; }
+        public int PresentPrice { get; set; }
+        public int PastPrice { get; set; }
         public string Percent { get; set; }
         public string Sku { get; set; }
         [Required]
@@ -29,5 +29,8 @@ namespace aspPortoWebsite.Models
         public int ProductsCategoryId { get; set; }
         [NotMapped]//menasi odurki database bunu nezere alma
         public IFormFile Photo { get; set; }
+        [NotMapped]
+        public IFormFileCollection GalleryFiles { get; set; }
+        public List<GalleryModel> Gallery { get; set; }
     }
 }

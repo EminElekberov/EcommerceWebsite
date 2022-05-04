@@ -1,6 +1,7 @@
 using aspPortoWebsite.Extension;
 using aspPortoWebsite.Fluent;
 using aspPortoWebsite.Models;
+using aspPortoWebsite.Repository;
 using aspPortoWebsite.ViewModels;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -46,7 +47,7 @@ namespace aspPortoWebsite
 
 
             services.AddScoped<IEmailService, EmailService>();
-
+            services.AddScoped<IBookRepository, BookRepository>();
 
             services.Configure<IdentityOptions>(options =>
             {

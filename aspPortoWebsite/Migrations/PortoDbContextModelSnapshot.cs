@@ -216,14 +216,14 @@ namespace aspPortoWebsite.Migrations
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);
 
-                    b.Property<string>("PastPrice")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PastPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("Percent")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PresentPrice")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PresentPrice")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ProductCategoryiesId")
                         .HasColumnType("int");
@@ -291,6 +291,178 @@ namespace aspPortoWebsite.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ContactsForms");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.ForBook.BookGallery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("URL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("BookGallery");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.ForBook.Books", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AdditionalInformation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PastPrice")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Percent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PresentPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductsCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SizeGuid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sku")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("productCategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("productCategoryId");
+
+                    b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.ForCart.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Adres")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdresBasligi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mahalle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderState")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PostaKodu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sehir")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Semt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.ForCart.OrderLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BooksId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BooksId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderLine");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.GalleryModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("URL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("GalleryModel");
                 });
 
             modelBuilder.Entity("aspPortoWebsite.Models.Group", b =>
@@ -435,6 +607,30 @@ namespace aspPortoWebsite.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("productCategories");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("aspPortoWebsite.Models.Service", b =>
@@ -804,6 +1000,46 @@ namespace aspPortoWebsite.Migrations
                     b.HasOne("aspPortoWebsite.Models.ProductCategory", "ProductCategoryies")
                         .WithMany("Categories")
                         .HasForeignKey("ProductCategoryiesId");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.ForBook.BookGallery", b =>
+                {
+                    b.HasOne("aspPortoWebsite.Models.ForBook.Books", "Book")
+                        .WithMany("bookGallery")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.ForBook.Books", b =>
+                {
+                    b.HasOne("aspPortoWebsite.Models.ProductCategory", "productCategory")
+                        .WithMany("Books")
+                        .HasForeignKey("productCategoryId");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.ForCart.OrderLine", b =>
+                {
+                    b.HasOne("aspPortoWebsite.Models.ForBook.Books", "Books")
+                        .WithMany()
+                        .HasForeignKey("BooksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("aspPortoWebsite.Models.ForCart.Order", "Order")
+                        .WithMany("Orderlines")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.GalleryModel", b =>
+                {
+                    b.HasOne("aspPortoWebsite.Models.Category", "Category")
+                        .WithMany("Gallery")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("aspPortoWebsite.Models.Student", b =>

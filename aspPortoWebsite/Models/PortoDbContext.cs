@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using aspPortoWebsite.Models.ForBook;
+using aspPortoWebsite.Models.ForCart;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,10 +31,14 @@ namespace aspPortoWebsite.Models
         public DbSet<WhyChoose> WhyChooses { get; set; } 
         public DbSet<Clients> Clients { get; set; } 
         public DbSet<MyBlogCollection> MyBlogCollections { get; set; } 
-        public DbSet<AskedQuestion> AskedQuestions { get; set; } 
+        public DbSet<AskedQuestion> AskedQuestions { get; set; }
+        public DbSet<Books> Books { get; set; }
+        public DbSet<BookGallery> BookGallery { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         //public DbSet<Teacher> Teacher { get; set; } 
-       // public DbSet<Hobby> Hobby { get; set; } 
-       // public DbSet<TechertoHobby> TechertoHobby { get; set; } 
+        // public DbSet<Hobby> Hobby { get; set; } 
+        // public DbSet<TechertoHobby> TechertoHobby { get; set; } 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
