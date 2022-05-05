@@ -1,0 +1,52 @@
+﻿@model IList<ShopByCategory>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData["Success"]
+    </div>
+}
+
+<div style="overflow-x: auto">
+
+    <div>
+        <a href="/Admin/Portfol/Create" class="btn btn-outline-info" style="width:100%">Add new student</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>className</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Challenge</th>
+                <th>Edit/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>
+                        <img width="200" height="150" src="~/images/ShopByCategories/@item.Image" alt="Alternate Text" />
+                    </td>
+                    <th scope="row">@item.ProductCategoryies.Name</th>
+                    <td>
+                        <a href="/Admin/portfol/Edit/@item.Id" style="color:red"><i class="fas fa-edit"></i></a>
+                        <a href="/Admin/portfol/Delete/@item.Id" onclick="return confirm('Silmek istediyinizden eminsiz?')" style="color:red">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

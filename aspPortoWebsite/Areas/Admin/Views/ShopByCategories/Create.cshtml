@@ -1,0 +1,26 @@
+﻿@model ShopByCategory
+
+@section styles{ @*bunu ona gore yazdiqki burda yazilan css shared papkasinda loayout.cshtml icerisinde render ede bilek*@
+<style>
+    label {
+        color: red;
+    }
+</style>
+}
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label>Category</label>
+        <select asp-for="ProductsCategoryId" class="form-control" style="width:600px;">
+            @foreach (var item in ViewBag.Categorys)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Image</label>
+        <input type="file" class="form-control" asp-for="Photo">
+        <span asp-validation-for="Photo" style="color:red"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

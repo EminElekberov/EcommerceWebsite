@@ -24,7 +24,7 @@ namespace aspPortoWebsite.Controllers
         }
         public async Task<IActionResult> Index(int page = 1)
         {
-            int take = 1;
+            int take = 3;
             ProductAndPaginationWm model = new ProductAndPaginationWm
             {
                 Books = await dbContext.Books.Skip(take * (page - 1)).Take(take).ToListAsync(),

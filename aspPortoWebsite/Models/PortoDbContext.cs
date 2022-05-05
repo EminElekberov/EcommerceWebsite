@@ -36,6 +36,7 @@ namespace aspPortoWebsite.Models
         public DbSet<BookGallery> BookGallery { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<ShopByCategory> ShopByCategories { get; set; }
         //public DbSet<Teacher> Teacher { get; set; } 
         // public DbSet<Hobby> Hobby { get; set; } 
         // public DbSet<TechertoHobby> TechertoHobby { get; set; } 
@@ -73,6 +74,11 @@ namespace aspPortoWebsite.Models
                .HasOne(a => a.Group)
                .WithMany(b => b.Students)
                .HasForeignKey(a => a.GroupId);
+
+            modelBuilder.Entity<ShopByCategory>()
+               .HasOne(a => a.ProductCategoryies)
+               .WithMany(b => b.shopByCategories)
+               .HasForeignKey(a => a.ProductsCategoryId);
 
             ////many to many
             //modelBuilder.Entity<TechertoHobby>()

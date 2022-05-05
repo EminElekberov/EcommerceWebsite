@@ -13,5 +13,6 @@ namespace aspPortoWebsite.Models
         public string className { get; set; }
         public List<Category> Categories { get; set; }
         public List<Books> Books { get; set; }
+        public List<ShopByCategory> shopByCategories { get; set; }
     }
 }

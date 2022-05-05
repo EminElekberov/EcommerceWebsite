@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using aspPortoWebsite.Models;
 
 namespace aspPortoWebsite.Migrations
 {
     [DbContext(typeof(PortoDbContext))]
-    partial class PortoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220505190649_shopscategoryies")]
+    partial class shopscategoryies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -672,12 +674,15 @@ namespace aspPortoWebsite.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProductCategoryiesId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductsCategoryId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductsCategoryId");
+                    b.HasIndex("ProductCategoryiesId");
 
                     b.ToTable("ShopByCategories");
                 });
@@ -1080,9 +1085,7 @@ namespace aspPortoWebsite.Migrations
                 {
                     b.HasOne("aspPortoWebsite.Models.ProductCategory", "ProductCategoryies")
                         .WithMany("shopByCategories")
-                        .HasForeignKey("ProductsCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductCategoryiesId");
                 });
 
             modelBuilder.Entity("aspPortoWebsite.Models.Student", b =>

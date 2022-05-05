@@ -150,3 +150,6 @@ C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\bin\Debug\netcoreapp3.1\Mi
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Productpartial.cshtml.g.cs
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Index.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Shared\BooksPartial.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ShopByCategories\Create.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ShopByCategories\Index.cshtml.g.cs
