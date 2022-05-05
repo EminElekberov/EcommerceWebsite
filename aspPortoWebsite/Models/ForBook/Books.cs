@@ -22,6 +22,7 @@ namespace aspPortoWebsite.Models.ForBook
         public DateTime? UpdatedOn { get; set; }
         public ProductCategory productCategory { get; set; }
         public IList<BookGallery> bookGallery { get; set; }
+        public IList<Review> Reviews { get; set; }
 
     }
 }

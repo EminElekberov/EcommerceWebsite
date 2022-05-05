@@ -42,33 +42,26 @@ namespace aspPortoWebsite.Controllers
         //    };
         //    return View(homeVM);
         //}
+        [HttpGet]
         public async  Task<IActionResult> Details(int id)
         {
-          //  var data = await _bookRepository.GetBookById(id);
             HomeVM homeVM = new HomeVM
             {
-                Books =dbContext.Books.Include(z=>z.bookGallery).Where(x=>x.ID==id).ToList()
+                Books = dbContext.Books.Include(z=>z.bookGallery).Where(x=>x.ID==id).ToList(),
+                listRewiew=dbContext.Reviews.Where(x=>x.BooksId==id).ToList()
             };
             return View(homeVM);
-            //if (id==null)
-            //{
-            //    return NotFound();
-            //}
-            //var search = dbContext.Categories.Find(id);
-            //if (search==null)
-            //{
-            //    return NotFound();
-            //}
-            //return View(search);
+           
         }
         [HttpPost]
         public async Task<IActionResult> Details(Review review)
         {
+           // var user = await dbContext.Books.FindAsync(review.Id);
             if (review == null)
             {
                 return NotFound();
             }
-            dbContext.Reviews.Add(review);
+            dbContext.Reviews.Add(new Review { BooksId=review.Id,Message=review.Message,Email=review.Email,Name=review.Name,Date=DateTime.Now.Date });
             await dbContext.SaveChangesAsync();
             return Redirect($"/categories/details/{review.Id}");
         }

@@ -1,4 +1,5 @@
 ﻿using aspPortoWebsite.Models;
+using aspPortoWebsite.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,12 @@ namespace aspPortoWebsite.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            HomeVM homeVM = new HomeVM
+            {
+                homeFooters=_dbcontext.HomeFooters.ToList(),
+                askedQuestions=_dbcontext.AskedQuestions.ToList()
+            };
+            return View(homeVM);
         }
         [HttpPost]
         public IActionResult Index(ContactsForm contact)
@@ -29,6 +35,5 @@ namespace aspPortoWebsite.Controllers
             _dbcontext.SaveChanges();
             return Redirect("/Contact/index");
         }
-
     }
 }

@@ -1,0 +1,138 @@
+﻿@model HomeVM
+<main class="main" style="margin-top:150px;">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="demo4.html"><i class="icon-home"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Contact Us
+                </li>
+            </ol>
+        </div>
+    </nav>
+
+
+    <div class="container contact-us-container">
+        <div class="contact-info">
+            <div class="row">
+                @foreach (var item in Model.homeFooters)
+                {
+
+                    <div class="col-12">
+                        <h2 class="ls-n-25 m-b-1">
+                            Contact Info
+                        </h2>
+
+                        @*<p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Sed imperdiet libero id nisi euismod, sed
+                                porta est consectetur. Vestibulum auctor felis eget
+                                orci semper vestibulum. Pellentesque ultricies nibh
+                                gravida, accumsan libero luctus, molestie nunc.L
+                                orem ipsum dolor sit amet, consectetur adipiscing
+                                elit.
+                            </p>*@
+                    </div>
+                    @if (item.Address != null)
+                    {
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="feature-box text-center">
+                                <i class="sicon-location-pin"></i>
+                                <div class="feature-box-content">
+                                    <h3>Address</h3>
+                                    <h5>@item.Address</h5>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (item.Phone != null)
+                    {
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="feature-box text-center">
+                                <i class="fa fa-mobile-alt"></i>
+                                <div class="feature-box-content">
+                                    <h3>Phone Number</h3>
+                                    <h5>@item.Phone</h5>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (item.Email != null)
+                    {
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="feature-box text-center">
+                                <i class="far fa-envelope"></i>
+                                <div class="feature-box-content">
+                                    <h3>E-mail Address</h3>
+                                    <h5>@item.Email</h5>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (item.WorkHours != null)
+                    {
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="feature-box text-center">
+                                <i class="far fa-calendar-alt"></i>
+                                <div class="feature-box-content">
+                                    <h3>Working Days/Hours</h3>
+                                    <h5>@item.WorkHours</h5>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="mt-6 mb-2">Send Us a Message</h2>
+
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row g-4">
+                        <div class="col-xl-6">
+                            <input name="name" type="text" class="form-control" asp-for="@Model.Contacts.Name" required placeholder="Name">
+                        </div>
+                        <div class="col-xl-6">
+                            <input name="email" type="email" class="form-control" asp-for="@Model.Contacts.Email" required placeholder="Email">
+                        </div>
+                        <div class="col">
+                            <textarea name="message" class="form-control" rows="5" asp-for="@Model.Contacts.Message" required placeholder="Tell us more about your needs........"></textarea>
+                        </div>
+                    </div>
+                    <p class="text-center mt-4 mb-0">
+                        <button id="submit-btn" class="btn btn-primary rounded-pill d-inline-flex" type="submit">Send Message</button>
+                    </p>
+                </form>
+            </div>
+
+            <div class="col-lg-6">
+                <h2 class="mt-6 mb-1">Frequently Asked Questions</h2>
+                @foreach (var item in Model.askedQuestions)
+                {
+                    <div id="accordion">
+                        <div class="card card-accordion">
+                            <a class="card-header" href="#" data-toggle="collapse" data-target="#collapseOne"
+                               aria-expanded="true" aria-controls="collapseOne">
+                                @item.Question
+                            </a>
+
+                            <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                <p>
+                                    @item.Answer
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-8"></div>
+</main>
