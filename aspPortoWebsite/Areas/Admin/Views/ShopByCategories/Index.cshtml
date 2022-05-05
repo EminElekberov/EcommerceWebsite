@@ -13,7 +13,7 @@
 <div style="overflow-x: auto">
 
     <div>
-        <a href="/Admin/Portfol/Create" class="btn btn-outline-info" style="width:100%">Add new student</a>
+        <a href="/Admin/ShopByCategories/Create" class="btn btn-outline-info" style="width:100%">Add new student</a>
     </div>
     <table class="table table-bordered">
         <thead>
@@ -21,11 +21,7 @@
                 <th>Id</th>
                 <th>Image</th>
                 <th>Name</th>
-                <th>className</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Challenge</th>
-                <th>Edit/Delete</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -39,8 +35,7 @@
                     </td>
                     <th scope="row">@item.ProductCategoryies.Name</th>
                     <td>
-                        <a href="/Admin/portfol/Edit/@item.Id" style="color:red"><i class="fas fa-edit"></i></a>
-                        <a href="/Admin/portfol/Delete/@item.Id" onclick="return confirm('Silmek istediyinizden eminsiz?')" style="color:red">
+                        <a href="/Admin/ShopByCategories/Delete/@item.Id" onclick="return confirm('Silmek istediyinizden eminsiz?')" style="color:red">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>

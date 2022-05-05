@@ -51,5 +51,16 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             _dbcontext.SaveChanges();
             return Redirect("/Admin/ShopByCategories/Index");
         }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id==null)
+            {
+                return NotFound();
+            }
+            var search =await _dbcontext.ShopByCategories.FindAsync(id);
+            _dbcontext.ShopByCategories.Remove(search);
+            await _dbcontext.SaveChangesAsync();
+            return View();
+        }
     }
 }
