@@ -20,5 +20,9 @@ namespace aspPortoWebsite.ViewModels
         public List<ShopByCategory> shopByCategories { get; set; }
         public List<Banner> banners { get; set; }
         public List<Service> services { get; set; }
+        public List<MyBlogCollection> myBlogCollections { get; set; }
+        public List<MyBlogCollectionReview> myBlogCollectionReviews { get; set; }
+        public MyBlogCollectionReview myBlogCollection { get; set; }
+        public MyBlogCollection BlogCollection { get; set; }
     }
 }

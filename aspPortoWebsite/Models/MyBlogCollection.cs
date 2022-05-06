@@ -14,6 +14,7 @@ namespace aspPortoWebsite.Models
         public string Date { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public IList<MyBlogCollectionReview> myBlogCollectionReviews { get; set; }
         [NotMapped]
         public IFormFile Photo { get; set; }
     }

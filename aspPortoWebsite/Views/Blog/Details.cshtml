@@ -1,5 +1,5 @@
 ﻿
-@model MyBlogCollection
+@model HomeVM
 <main class="main" style="margin-top:150px;">
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
         <div class="container">
@@ -13,26 +13,27 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9">
+
                 <article class="post single">
                     <div class="post-media">
-                        <img src="~/images/blog/@Model.Image" alt="Post" style="height:450px;">
+                        <img src="~/images/blog/@Model.BlogCollection.Image" alt="Post" style="height:450px;">
                     </div><!-- End .post-media -->
 
                     <div class="post-body">
                         <div class="post-date">
                             <span class="day">
-                                @Model.Date
+                                @Model.BlogCollection.Date
                             </span>
                         </div><!-- End .post-date -->
 
-                        <h2 class="post-title" style="margin-left:100px;">@Model.Title</h2>
+                        <h2 class="post-title" style="margin-left:100px;">@Model.BlogCollection.Title</h2>
 
                         <div class="post-meta">
                             <a href="#" class="hash-scroll" style="margin-left:80px;">0 Comments</a>
                         </div><!-- End .post-meta -->
 
                         <div class="post-content">
-                            @Model.Description
+                            @Model.BlogCollection.Description
                         </div><!-- End .post-content -->
 
                         <div class="post-share">
@@ -61,71 +62,53 @@
                                 </a>
                             </div><!-- End .social-icons -->
                         </div><!-- End .post-share -->
+                    
 
                         <div class="post-author">
-                            <h3><i class="far fa-user"></i>Author</h3>
+                           
+                                <h3><i class="far fa-user"></i></h3>
 
-                            <figure>
-                                <a href="#">
-                                    <img src="assets/images/blog/author.jpg" alt="author">
-                                </a>
-                            </figure>
+                                <figure>
+                                    @foreach (var item in Model.myBlogCollectionReviews)
+                                    {
+                                        <a href="#" >
+                                            <img src="~/images/blog/author2.png" alt="author" style="margin-top:20px;">
+                                        </a>
+                                    }
+                                    </figure>
 
-                            <div class="author-content">
-                                <h4><a href="#">John Doe</a></h4>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod
-                                    odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in
-                                    adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis
-                                    placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.
-                                </p>
-                            </div><!-- End .author.content -->
-                        </div><!-- End .post-author -->
+                                <div class="author-content">
+                                    @foreach (var item in Model.myBlogCollectionReviews)
+                                    {
+                                        <h4 ><a href="#">@item.Name</a></h4>
+                                        <p style="margin-top:20px;">
+                                            @item.Message
+                                        </p>
+                                        }
+                                    </div><!-- End .author.content -->
+                            </div><!-- End .post-author -->
 
                         <div class="comment-respond">
                             <h3>Leave a Reply</h3>
 
-                            <form action="#">
-                                <p>Your email address will not be published. Required fields are marked *</p>
-
-                                <div class="form-group">
-                                    <label>Comment</label>
-                                    <textarea cols="30" rows="1" class="form-control" required></textarea>
-                                </div><!-- End .form-group -->
-
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" class="form-control" required>
-                                </div><!-- End .form-group -->
-
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control" required>
-                                </div><!-- End .form-group -->
-
-                                <div class="form-group">
-                                    <label>Website</label>
-                                    <input type="url" class="form-control">
-                                </div><!-- End .form-group -->
-
-                                <div class="form-group-custom-control mb-2">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="save-name">
-                                        <label class="custom-control-label" for="save-name">
-                                            Save my name, email,
-                                            and website in this browser for the next time I comment.
-                                        </label>
-                                    </div><!-- End .custom-checkbox -->
-                                </div><!-- End .form-group-custom-control -->
-
-                                <div class="form-footer my-0">
-                                    <button type="submit" class="btn btn-sm btn-primary">
-                                        Post
-                                        Comment
-                                    </button>
-                                </div><!-- End .form-footer -->
+                            <form method="post" enctype="multipart/form-data">
+                                <div class="row g-4">
+                                    <div class="col-xl-6">
+                                        <input name="name" type="text" class="form-control" asp-for="@Model.myBlogCollection.Name" required placeholder="Name">
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <input name="email" type="email" class="form-control" asp-for="@Model.myBlogCollection.Email" required placeholder="Email">
+                                    </div>
+                                    <div class="col">
+                                        <textarea name="message" class="form-control" rows="5" asp-for="@Model.myBlogCollection.Message" required placeholder="Tell us more about your needs........"></textarea>
+                                    </div>
+                                </div>
+                                <p class="text-center mt-4 mb-0">
+                                    <button id="submit-btn" class="btn btn-primary rounded-pill d-inline-flex" type="submit">Send Message</button>
+                                </p>
                             </form>
                         </div><!-- End .comment-respond -->
+                    }
                     </div><!-- End .post-body -->
                 </article><!-- End .post -->
 
@@ -137,123 +120,30 @@
                     <div class="owl-carousel owl-theme related-posts-carousel" data-owl-options="{
 								'dots': false
 							}">
-                        @foreach (var item in Model.)
+                        @foreach (var item in Model.myBlogCollections)
                         {
-
                             <article class="post">
                                 <div class="post-media zoom-effect">
-                                    <a href="single.html">
-                                        <img src="assets/images/blog/related/post-1.jpg" alt="Post">
+                                    <a href="/Blog/Details/@item.Id">
+                                        <img src="~/images/blog/@item.Image" alt="Post" style="height:450px;">
                                     </a>
                                 </div><!-- End .post-media -->
 
                                 <div class="post-body">
                                     <div class="post-date">
-                                        <span class="day">29</span>
-                                        <span class="month">Jun</span>
+                                        <span class="day">@item.Date</span>
                                     </div><!-- End .post-date -->
 
                                     <h2 class="post-title">
-                                        <a href="single.html">Post Format - Image</a>
+                                        <a href="single.html">@item.Title</a>
                                     </h2>
 
                                     <div class="post-content">
                                         <p>
-                                            Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu
-                                            ad litora torquent per conubia nostra, per incep tos himens.
+                                            @item.Description
                                         </p>
 
-                                        <a href="single.html" class="read-more">
-                                            read more <i class="fas fa-angle-right"></i>
-                                        </a>
-                                    </div><!-- End .post-content -->
-                                </div><!-- End .post-body -->
-                            </article>
-
-                            <article class="post">
-                                <div class="post-media zoom-effect">
-                                    <a href="single.html">
-                                        <img src="assets/images/blog/related/post-2.jpg" alt="Post">
-                                    </a>
-                                </div><!-- End .post-media -->
-
-                                <div class="post-body">
-                                    <div class="post-date">
-                                        <span class="day">23</span>
-                                        <span class="month">Mar</span>
-                                    </div><!-- End .post-date -->
-
-                                    <h2 class="post-title">
-                                        <a href="single.html">Post Format - Image</a>
-                                    </h2>
-
-                                    <div class="post-content">
-                                        <p>
-                                            Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu
-                                            ad litora torquent per conubia nostra, per incep tos himens.
-                                        </p>
-
-                                        <a href="single.html" class="read-more">
-                                            read more <i class="fas fa-angle-right"></i>
-                                        </a>
-                                    </div><!-- End .post-content -->
-                                </div><!-- End .post-body -->
-                            </article>
-
-                            <article class="post">
-                                <div class="post-media zoom-effect">
-                                    <a href="single.html">
-                                        <img src="assets/images/blog/related/post-3.jpg" alt="Post">
-                                    </a>
-                                </div><!-- End .post-media -->
-
-                                <div class="post-body">
-                                    <div class="post-date">
-                                        <span class="day">14</span>
-                                        <span class="month">May</span>
-                                    </div><!-- End .post-date -->
-
-                                    <h2 class="post-title">
-                                        <a href="single.html">Post Format - Image</a>
-                                    </h2>
-
-                                    <div class="post-content">
-                                        <p>
-                                            Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu
-                                            ad litora torquent per conubia nostra, per incep tos himens.
-                                        </p>
-
-                                        <a href="single.html" class="read-more">
-                                            read more <i class="fas fa-angle-right"></i>
-                                        </a>
-                                    </div><!-- End .post-content -->
-                                </div><!-- End .post-body -->
-                            </article>
-
-                            <article class="post">
-                                <div class="post-media zoom-effect">
-                                    <a href="single.html">
-                                        <img src="assets/images/blog/related/post-1.jpg" alt="Post">
-                                    </a>
-                                </div><!-- End .post-media -->
-
-                                <div class="post-body">
-                                    <div class="post-date">
-                                        <span class="day">11</span>
-                                        <span class="month">Apr</span>
-                                    </div><!-- End .post-date -->
-
-                                    <h2 class="post-title">
-                                        <a href="single.html">Post Format - Image</a>
-                                    </h2>
-
-                                    <div class="post-content">
-                                        <p>
-                                            Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu
-                                            ad litora torquent per conubia nostra, per incep tos himens.
-                                        </p>
-
-                                        <a href="single.html" class="read-more">
+                                        <a href="/Blog/Details/@item.Id" class="read-more">
                                             read more <i class="fas fa-angle-right"></i>
                                         </a>
                                     </div><!-- End .post-content -->
@@ -262,7 +152,6 @@
                         }
                     </div><!-- End .owl-carousel -->
                 </div><!-- End .related-posts -->
-                }
             </div><!-- End .col-lg-9 -->
 
             <div class="sidebar-toggle custom-sidebar-toggle">
@@ -274,46 +163,27 @@
 
                     <div class="widget">
                         <h4 class="widget-title">Recent Posts</h4>
+                        @foreach (var item in Model.myBlogCollections)
+                        {
 
-                        <ul class="simple-post-list">
-                            <li>
-                                <div class="post-media">
-                                    <a href="single.html">
-                                        <img src="assets/images/blog/widget/post-1.jpg" alt="Post">
-                                    </a>
-                                </div><!-- End .post-media -->
-                                <div class="post-info">
-                                    <a href="single.html">Post Format - Video</a>
-                                    <div class="post-meta">
-                                        April 08, 2018
-                                    </div><!-- End .post-meta -->
-                                </div><!-- End .post-info -->
-                            </li>
-
-                            <li>
-                                <div class="post-media">
-                                    <a href="single.html">
-                                        <img src="assets/images/blog/widget/post-2.jpg" alt="Post">
-                                    </a>
-                                </div><!-- End .post-media -->
-                                <div class="post-info">
-                                    <a href="single.html">Post Format - Image</a>
-                                    <div class="post-meta">
-                                        March 23, 2016
-                                    </div><!-- End .post-meta -->
-                                </div><!-- End .post-info -->
-                            </li>
-                        </ul>
+                            <ul class="simple-post-list">
+                                <li>
+                                    <div class="post-media">
+                                        <a href="/Blog/Details/@item.Id">
+                                            <img src="~/images/blog/@item.Image" alt="Post" style="height:50px;">
+                                        </a>
+                                    </div><!-- End .post-media -->
+                                    <div class="post-info">
+                                        <a href="single.html">Post Format - Image</a>
+                                        <div class="post-meta">
+                                            @item.Date
+                                        </div><!-- End .post-meta -->
+                                    </div><!-- End .post-info -->
+                                </li>
+                            </ul>
+                        }
                     </div><!-- End .widget -->
 
-                    <div class="widget">
-                        <h4 class="widget-title">Tags</h4>
-
-                        <div class="tagcloud">
-                            <a href="#">ARTICLES</a>
-                            <a href="#">CHAT</a>
-                        </div><!-- End .tagcloud -->
-                    </div><!-- End .widget -->
                 </div><!-- End .sidebar-wrapper -->
             </aside><!-- End .col-lg-3 -->
         </div><!-- End .row -->

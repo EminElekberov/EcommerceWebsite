@@ -1,5 +1,7 @@
 ﻿using aspPortoWebsite.Models;
+using aspPortoWebsite.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +24,35 @@ namespace aspPortoWebsite.Controllers
         }
         public async Task<IActionResult> Details(int? id)
         {
-            if (id==null)
+            HomeVM homeVM = new HomeVM
+            {
+                myBlogCollections = _dbContext.MyBlogCollections.ToList(),
+                BlogCollection=await _dbContext.MyBlogCollections.FindAsync(id),
+                myBlogCollectionReviews=_dbContext.MyBlogCollectionReviews.Where(z=>z.MyBlogCollectionid==id).ToList()
+            };
+            #region
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+            //var search = await _dbContext.MyBlogCollections.FindAsync(id);
+            //if (search == null)
+            //{
+            //    return NotFound();
+            //}
+            #endregion
+            return View(homeVM);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Details(MyBlogCollectionReview myBlogCollectionReview)
+        {
+            if (myBlogCollectionReview == null)
             {
                 return NotFound();
             }
-            var search =await _dbContext.MyBlogCollections.FindAsync(id);
-            if (search==null)
-            {
-                return NotFound();
-            }
-            return View(search);
+            _dbContext.MyBlogCollectionReviews.Add(new MyBlogCollectionReview { MyBlogCollectionid = myBlogCollectionReview.Id, Message = myBlogCollectionReview.Message, Email = myBlogCollectionReview.Email, Name = myBlogCollectionReview.Name});
+            await _dbContext.SaveChangesAsync();
+            return Redirect($"/blog/details/{myBlogCollectionReview.Id}");
         }
     }
 }
