@@ -17,5 +17,8 @@ namespace aspPortoWebsite.ViewModels
         public ContactsForm Contacts { get; set; }
         public List<HomeFooter> homeFooters { get; set; }
         public List<AskedQuestion> askedQuestions { get; set; }
+        public List<ShopByCategory> shopByCategories { get; set; }
+        public List<Banner> banners { get; set; }
+        public List<Service> services { get; set; }
     }
 }

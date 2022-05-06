@@ -80,6 +80,11 @@ namespace aspPortoWebsite.Models
                .WithMany(b => b.shopByCategories)
                .HasForeignKey(a => a.ProductsCategoryId);
 
+            modelBuilder.Entity<Books>()
+               .HasOne(a => a.productCategory)
+               .WithMany(b => b.Books)
+               .HasForeignKey(a => a.ProductsCategoryId);
+
             ////many to many
             //modelBuilder.Entity<TechertoHobby>()
             //    .HasNoKey();

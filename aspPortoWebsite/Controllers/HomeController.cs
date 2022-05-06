@@ -25,9 +25,20 @@ namespace aspPortoWebsite.Controllers
             {
                 Categories = await dbContext.Categories.ToListAsync(),
                 Sliders = await dbContext.Sliders.ToListAsync(),
+                shopByCategories=await dbContext.ShopByCategories.Include(x=>x.ProductCategoryies).ToListAsync(),
+                banners=await dbContext.Banners.ToListAsync(),
+                Books=await dbContext.Books.Include(x=>x.productCategory).ToListAsync(),
+                services=await dbContext.Services.ToListAsync()
             };
 
             return View(vM);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(ContactsForm contactsForm)
+        {
+            await dbContext.ContactsForms.AddAsync(contactsForm);
+            await dbContext.SaveChangesAsync();
+            return RedirectToAction("/Home/Index");
         }
        
         public IActionResult AboutPage()

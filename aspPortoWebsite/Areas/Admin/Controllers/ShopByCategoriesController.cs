@@ -60,7 +60,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             var search =await _dbcontext.ShopByCategories.FindAsync(id);
             _dbcontext.ShopByCategories.Remove(search);
             await _dbcontext.SaveChangesAsync();
-            return View();
+            return View("/Admin/ShopCategories/index");
         }
     }
 }
