@@ -155,3 +155,4 @@ C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Ra
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ShopByCategories\Index.cshtml.g.cs
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Blog\Index.cshtml.g.cs
 C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Blog\Details.cshtml.g.cs
+C:\Users\EMIN\Desktop\aspPortoWebsite\aspPortoWebsite\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
