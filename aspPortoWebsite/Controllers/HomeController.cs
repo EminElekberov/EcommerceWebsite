@@ -41,6 +41,19 @@ namespace aspPortoWebsite.Controllers
             await dbContext.SaveChangesAsync();
             return RedirectToAction("/Home/Index");
         }
+        public async Task<IActionResult> ShopCategory(int? id)
+        {
+            if (id==null)
+            {
+                return NotFound();
+            }
+            var search =await dbContext.Books.Include(x => x.productCategory).Where(x => x.ProductsCategoryId == id).ToListAsync();
+            if (search==null)
+            {
+                return NotFound();
+            }
+            return View(search);
+        }
        
         public IActionResult AboutPage()
         {
