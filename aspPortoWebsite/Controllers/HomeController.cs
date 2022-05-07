@@ -43,16 +43,17 @@ namespace aspPortoWebsite.Controllers
         }
         public async Task<IActionResult> ShopCategory(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var search =await dbContext.Books.Include(x => x.productCategory).Where(x => x.ProductsCategoryId == id).ToListAsync();
-            if (search==null)
+            HomeVM homeVM = new HomeVM
             {
-                return NotFound();
-            }
-            return View(search);
+                Books= await dbContext.Books.Include(x => x.productCategory).Where(x => x.ProductsCategoryId == id).ToListAsync(),
+                productCategories=await dbContext.productCategories.ToListAsync(),
+                BooksCategory=await dbContext.Books.Include(x=>x.productCategory).ToListAsync()
+            };
+            return View(homeVM);
         }
        
         public IActionResult AboutPage()

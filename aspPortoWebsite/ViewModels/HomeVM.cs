@@ -12,6 +12,7 @@ namespace aspPortoWebsite.ViewModels
         public List<Slider> Sliders { get; set; }
         public List<Category> Categories { get; set; }
         public List<Books> Books { get; set; }
+        public List<Books> BooksCategory { get; set; }
         public List<Review> listRewiew { get; set; }
         public Review Reviews { get; set; }
         public ContactsForm Contacts { get; set; }

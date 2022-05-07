@@ -1,4 +1,4 @@
-﻿@model IList<Books>
+﻿@model HomeVM
 <link rel="stylesheet" href="~/css/bootstrap.min.css">
 
 <!-- Main CSS File -->
@@ -8,7 +8,6 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="demo3.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Men</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Accessories</li>
             </ol>
         </div><!-- End .container -->
@@ -18,17 +17,8 @@
         <div class="row">
             <div class="col-lg-9 main-content">
                 <div class="category-banner pt-0 pb-2">
-                    <img class="slide-bg" src="assets/images/demoes/demo3/banners/banner-1.jpg" alt="banner"
+                    <img class="slide-bg" src="~/images/ShopCategory.jpg" alt="banner"
                          width="1500" height="320">
-                    <div class="category-slide-content pt-1">
-                        <h2 class="m-b-3">Winter Fashion Trends</h2>
-                        <h3 class="text-uppercase ml-0">Up to 30% off on Jackets</h3>
-
-                        <h5 class="text-uppercase d-inline-block mb-1 pb-2">
-                            Starting at<span class="coupon-sale-text font2"><sup>$</sup>199<sup>99</sup></span>
-                        </h5>
-                        <a href="demo3-shop.html" class="btn btn-dark btn-xl ls-0" role="button">Shop Now</a>
-                    </div><!-- End .category-slide-content -->
                 </div><!-- End .category-slide -->
 
                 <nav class="toolbox sticky-header" data-sticky-options="{'mobile': true}">
@@ -96,13 +86,13 @@
                 </nav>
 
                 <div class="row">
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Books)
                     {
                         <div class="col-6 col-sm-4 col-md-3 col-xl-5col">
 
                             <div class="product-default inner-quickview inner-icon">
                                 <figure>
-                                    <a href="demo3-product.html">
+                                    <a href="/Categories/Details/@item.ID">
                                         <img src="~/images/categories/@item.Image" style="height:150px;" alt="productr" />
                                     </a>
                                     <div class="label-group">
@@ -146,7 +136,7 @@
                             </div>
                         </div>
                     }
-                    </div>
+                </div>
 
                 <nav class="toolbox toolbox-pagination">
                     <div class="toolbox-item toolbox-show">
@@ -189,48 +179,23 @@
                         <div class="collapse show" id="widget-body-2">
                             <div class="widget-body">
                                 <ul class="cat-list">
-                                    <li>
-                                        <a href="#widget-category-1" class="collapsed" data-toggle="collapse"
-                                           role="button" aria-expanded="false"
-                                           aria-controls="widget-category-1">
-                                            Accessories<span class="products-count">(3)</span>
-                                            <span class="toggle"></span>
-                                        </a>
-                                        <div class="collapse" id="widget-category-1">
-                                            <ul class="cat-sublist">
-                                                <li>Caps<span class="products-count">(1)</span></li>
-                                                <li>Watches<span class="products-count">(2)</span></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="#widget-category-2" class="collapsed" data-toggle="collapse"
-                                           role="button" aria-expanded="false"
-                                           aria-controls="widget-category-2">
-                                            Electronics<span class="products-count">(4)</span>
-                                            <span class="toggle"></span>
-                                        </a>
-                                        <div class="collapse" id="widget-category-2">
-                                            <ul class="cat-sublist">
-                                                <li>Shoes<span class="products-count">(4)</span></li>
-                                                <li>Bag<span class="products-count">(2)</span></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="#widget-category-3" class="collapsed" data-toggle="collapse"
-                                           role="button" aria-expanded="false"
-                                           aria-controls="widget-category-3">
-                                            Fashion<span class="products-count">(2)</span>
-                                            <span class="toggle"></span>
-                                        </a>
-                                        <div class="collapse" id="widget-category-3">
-                                            <ul class="cat-sublist">
-                                                <li>Shoes<span class="products-count">(4)</span></li>
-                                                <li>Bag<span class="products-count">(2)</span></li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    @foreach (var item in Model.BooksCategory)
+                                    {
+                                        <li>
+                                            <a href="#widget-category-1" class="collapsed" data-toggle="collapse"
+                                               role="button" aria-expanded="false"
+                                               aria-controls="widget-category-1">
+                                                @item.productCategory.Name<span class="products-count"></span>
+                                                <span class="toggle"></span>
+                                            </a>
+                                            <div class="collapse" id="widget-category-1">
+                                                <ul class="cat-sublist">
+                                                    <li>@item.Name<span class="products-count"></span></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    }
+                                   
                                 </ul>
                             </div><!-- End .widget-body -->
                         </div><!-- End .collapse -->
