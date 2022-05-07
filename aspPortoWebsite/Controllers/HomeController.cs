@@ -28,7 +28,8 @@ namespace aspPortoWebsite.Controllers
                 shopByCategories=await dbContext.ShopByCategories.Include(x=>x.ProductCategoryies).ToListAsync(),
                 banners=await dbContext.Banners.ToListAsync(),
                 Books=await dbContext.Books.Include(x=>x.productCategory).ToListAsync(),
-                services=await dbContext.Services.ToListAsync()
+                services=await dbContext.Services.ToListAsync(),
+                productCategories=await dbContext.productCategories.ToListAsync()
             };
 
             return View(vM);

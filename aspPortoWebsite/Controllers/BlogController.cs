@@ -20,15 +20,23 @@ namespace aspPortoWebsite.Controllers
 
         public IActionResult Index()
         {
-            return View(_dbContext.MyBlogCollections.ToList());
+            return View(_dbContext.MyBlogCollections.Include(z=>z.myBlogCollectionReviews).Select(x => new MyBlogCollection()
+            {
+                Id = x.Id,
+                Image=x.Image,
+                Date=x.Date.Length>5?x.Date.Substring(0,6):x.Date,
+                Title=x.Title,
+                Description=x.Description.Length>30?x.Description.Substring(0,25):x.Description,
+                myBlogCollectionReviews=x.myBlogCollectionReviews
+            }).ToList());
         }
         public async Task<IActionResult> Details(int? id)
         {
             HomeVM homeVM = new HomeVM
             {
                 myBlogCollections = _dbContext.MyBlogCollections.ToList(),
-                BlogCollection=await _dbContext.MyBlogCollections.FindAsync(id),
-                myBlogCollectionReviews=_dbContext.MyBlogCollectionReviews.Where(z=>z.MyBlogCollectionid==id).ToList()
+                BlogCollection = _dbContext.MyBlogCollections.Find(id),
+                myBlogCollectionReviews = _dbContext.MyBlogCollectionReviews.Where(z => z.MyBlogCollectionid == id).ToList()
             };
             #region
             //if (id == null)
@@ -50,7 +58,7 @@ namespace aspPortoWebsite.Controllers
             {
                 return NotFound();
             }
-            _dbContext.MyBlogCollectionReviews.Add(new MyBlogCollectionReview { MyBlogCollectionid = myBlogCollectionReview.Id, Message = myBlogCollectionReview.Message, Email = myBlogCollectionReview.Email, Name = myBlogCollectionReview.Name});
+            _dbContext.MyBlogCollectionReviews.Add(new MyBlogCollectionReview { MyBlogCollectionid = myBlogCollectionReview.Id, Message = myBlogCollectionReview.Message, Email = myBlogCollectionReview.Email, Name = myBlogCollectionReview.Name });
             await _dbContext.SaveChangesAsync();
             return Redirect($"/blog/details/{myBlogCollectionReview.Id}");
         }
