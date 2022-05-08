@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,6 +24,9 @@ namespace aspPortoWebsite.Models.ForBook
         public ProductCategory productCategory { get; set; }
         public IList<BookGallery> bookGallery { get; set; }
         public IList<Review> Reviews { get; set; }
+        [NotMapped]
+        public List<int> ColorId { get; set; }
+        public IList<BooksToColor> booksToColors { get; set; }
 
     }
 }

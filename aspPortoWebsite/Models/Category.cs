@@ -32,5 +32,9 @@ namespace aspPortoWebsite.Models
         [NotMapped]
         public IFormFileCollection GalleryFiles { get; set; }
         public List<GalleryModel> Gallery { get; set; }
+        [NotMapped]
+        public int BooksID { get; set; }
+        [NotMapped]
+        public List<int> ColorId { get; set; }
     }
 }

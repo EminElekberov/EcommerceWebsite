@@ -1,6 +1,7 @@
 ﻿using aspPortoWebsite.Extension;
 using aspPortoWebsite.Models;
 using aspPortoWebsite.Repository;
+using aspPortoWebsite.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,8 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewBag.Categorys = _dbcontext.productCategories.ToList();
+            ViewBag.Color = _dbcontext.Colors.ToList();
+            ViewBag.Packets = _dbcontext.Books.ToList();
             return View();
         }
         #region
@@ -80,6 +83,17 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Category bookModel)
         {
+            BooksToColor booksToColor = new BooksToColor();
+            foreach (var item in bookModel.ColorId)
+            {
+                BooksToColor packet = new BooksToColor
+                {
+                    BookId= bookModel.BooksID,
+                    ColorId=item
+                };
+                _dbcontext.BooksToColors.Add(packet);
+            }
+            _dbcontext.SaveChanges();
             if (!ModelState.IsValid)
             {
                 if (bookModel.Photo != null)

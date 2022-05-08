@@ -36,6 +36,8 @@ namespace aspPortoWebsite.Models
         public DbSet<BookGallery> BookGallery { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<BooksToColor> BooksToColors { get; set; }
         public DbSet<ShopByCategory> ShopByCategories { get; set; }
         public DbSet<MyBlogCollectionReview> MyBlogCollectionReviews { get; set; }
         //public DbSet<Teacher> Teacher { get; set; } 

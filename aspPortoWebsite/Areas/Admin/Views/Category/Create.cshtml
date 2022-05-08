@@ -17,6 +17,33 @@
             }
         </select>
     </div>
+    <div class="intro-y box p-5">
+        <div class="form-group">
+            <label asp-for="BooksID" class="font-weight-600">Practice Area</label>
+            <select asp-for="BooksID" class="form-select" asp-items="@(new SelectList(ViewBag.Packets, "ID", "Name"))">
+            </select>
+            <span asp-validation-for="BooksID"></span>
+        </div>
+        <div class="mt-3 " id="skill" style=" border: 1px solid #cfcfcf !important;   padding: 20px 40px 20px 20px; border:5px; position:relative;">
+            <span id="addSkill" style="cursor:pointer; position:absolute; right:40px; top:0px; font-size:25px; font-weight:700; color:#1c3faa">+</span>
+            <div class="skill-item" style="position:relative;">
+                <label asp-for="ColorId">components</label>
+                <div class="mt-2">
+                    <select asp-for="ColorId" asp-items="@(new SelectList(ViewBag.Color, "Id", "Name"))" data-placeholder="Select your favorite actors" class="select2 w-full">
+                        <option selected="" disabled>Select Skill</option>
+                    </select>
+                </div>
+                <span class="deleteSkill" style="cursor:pointer; position:absolute; right:-20px; bottom:4px;font-size: 25px; font-weight: 700;color: red;">x</span>
+
+            </div>
+            <hr style="margin:10px 0px" />
+            <div class="text-right mt-5">
+                <a asp-area="admin" asp-controller="teacher" asp-action="index" class="button w-24 border text-gray-700 mr-1">Cancel</a>
+                <button type="submit" class="button w-24 bg-theme-1 text-white">Create</button>
+            </div>
+        </div>
+    </div>
+
     <div class="mb-3">
         <label>Image</label>
         <input type="file" class="form-control" asp-for="Photo">
