@@ -1,0 +1,50 @@
+﻿@model IList<Books>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+@{
+    Layout = null;
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData["Success"]
+    </div>
+}
+<div style="margin-top:200px;">
+    @*<div class="col-4" justify-content-end>
+        <form asp-controller="Categories" asp-action="Index">
+            <span class="btn-group">
+                <input class="form-control" type="text" name="SeachText" />
+                <input class="p-1 ml-2 btn btn-sm btn-info" type="submit" value="Search>" />
+            </span>
+        </form>
+    </div>*@
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Count</th>
+                <th scope="col">Description</th>
+                <th>CRUD</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.ID</th>
+                    <td>
+                        <img width="200" height="150" src="~/images/categories/@item.Image" alt="Alternate Text" />
+                    </td>
+                    <td>@item.Name</td>
+                    <td>@Html.Raw(item.Description)</td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</div>

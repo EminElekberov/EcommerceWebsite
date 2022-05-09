@@ -1,5 +1,6 @@
 ﻿using aspPortoWebsite.Extension;
 using aspPortoWebsite.Models;
+using aspPortoWebsite.Models.ForBook;
 using aspPortoWebsite.Repository;
 using aspPortoWebsite.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -66,6 +67,32 @@ namespace aspPortoWebsite.Controllers
             dbContext.Reviews.Add(new Review { BooksId=review.Id,Message=review.Message,Email=review.Email,Name=review.Name,Date=DateTime.Now.Date });
             await dbContext.SaveChangesAsync();
             return Redirect($"/categories/details/{review.Id}");
+        }
+        public async Task<IActionResult> Search(string SeachText = "")
+        {
+            List<Books> category;
+            if (SeachText != "" && SeachText != null)
+            {
+                category = dbContext.Books.Where(p => p.Name.ToLower() == SeachText.ToLower()).ToList();
+            }
+            else
+            {
+                category = dbContext.Books.ToList();
+            }
+            return View(category);
+        }
+        public async Task<IActionResult> Search2(string SeachText = "")
+        {
+            List<Books> category;
+            if (SeachText != "" && SeachText != null)
+            {
+                category = dbContext.Books.Include(x=>x.productCategory).Where(p => p.Name.ToLower() == SeachText.ToLower()).ToList();
+            }
+            else
+            {
+                category = dbContext.Books.ToList();
+            }
+            return View(category);
         }
     }
 }
