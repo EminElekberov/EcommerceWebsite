@@ -25,11 +25,11 @@ namespace aspPortoWebsite.Controllers
             {
                 Categories = await dbContext.Categories.ToListAsync(),
                 Sliders = await dbContext.Sliders.ToListAsync(),
-                shopByCategories=await dbContext.ShopByCategories.Include(x=>x.ProductCategoryies).ToListAsync(),
-                banners=await dbContext.Banners.ToListAsync(),
-                Books=await dbContext.Books.Include(x=>x.productCategory).ToListAsync(),
-                services=await dbContext.Services.ToListAsync(),
-                productCategories=await dbContext.productCategories.ToListAsync()
+                shopByCategories = await dbContext.ShopByCategories.Include(x => x.ProductCategoryies).ToListAsync(),
+                banners = await dbContext.Banners.ToListAsync(),
+                Books = await dbContext.Books.Include(x => x.productCategory).ToListAsync(),
+                services = await dbContext.Services.ToListAsync(),
+                productCategories = await dbContext.productCategories.ToListAsync()
             };
 
             return View(vM);
@@ -49,13 +49,14 @@ namespace aspPortoWebsite.Controllers
             }
             HomeVM homeVM = new HomeVM
             {
-                Books= await dbContext.Books.Include(x => x.productCategory).Where(x => x.ProductsCategoryId == id).ToListAsync(),
-                productCategories=await dbContext.productCategories.ToListAsync(),
-                BooksCategory=await dbContext.Books.Include(x=>x.productCategory).ToListAsync()
+                Books = await dbContext.Books.Include(x => x.productCategory).Where(x => x.ProductsCategoryId == id).ToListAsync(),
+                productCategories = await dbContext.productCategories.ToListAsync(),
+                BooksCategory = await dbContext.Books.Include(x => x.productCategory).ToListAsync(),
+                colors =await dbContext.Colors.ToListAsync()
             };
             return View(homeVM);
         }
-       
+
         public IActionResult AboutPage()
         {
             return View();

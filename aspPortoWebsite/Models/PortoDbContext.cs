@@ -35,7 +35,9 @@ namespace aspPortoWebsite.Models
         public DbSet<Books> Books { get; set; }
         public DbSet<BookGallery> BookGallery { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Size> Sizes { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<SizeToBooks> SizeToBooks { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<BooksToColor> BooksToColors { get; set; }
         public DbSet<ShopByCategory> ShopByCategories { get; set; }
@@ -110,6 +112,34 @@ namespace aspPortoWebsite.Models
 
             modelBuilder.Entity<TechertoHobby>()
                 .HasKey(bc => new { bc.TeacherID, bc.HobbyId });
+
+
+            modelBuilder.Entity<BooksToColor>()
+              .HasOne(a => a.Books)
+              .WithMany(b => b.booksToColors)
+              .HasForeignKey(a => a.BookId);
+
+            modelBuilder.Entity<BooksToColor>()
+              .HasOne(a => a.Color)
+              .WithMany(b => b.booksToColors)
+              .HasForeignKey(a => a.ColorId);
+
+            modelBuilder.Entity<BooksToColor>()
+                .HasKey(bc => new { bc.BookId, bc.ColorId });
+
+
+            modelBuilder.Entity<SizeToBooks>()
+              .HasOne(a => a.Books)
+              .WithMany(b => b.sizeToBooks)
+              .HasForeignKey(a => a.BooksId);
+
+            modelBuilder.Entity<SizeToBooks>()
+              .HasOne(a => a.Size)
+              .WithMany(b => b.sizeToBooks)
+              .HasForeignKey(a => a.SizeId);
+
+            modelBuilder.Entity<SizeToBooks>()
+                .HasKey(bc => new { bc.BooksId, bc.SizeId });
 
         }
 

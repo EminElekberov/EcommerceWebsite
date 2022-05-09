@@ -46,7 +46,7 @@
             <div class="col-lg-7 col-md-6 product-single-details">
                 <h1 class="product-title">@item.Name</h1>
 
-                
+
                 <div class="ratings-container">
                     <div class="product-ratings">
                         <span class="ratings" style="width:60%"></span>
@@ -81,9 +81,43 @@
                     </li>
 
                     <li>
-                        CATEGORY: <strong><a href="#" class="product-category">SHOES</a></strong>
+                        CATEGORY: <strong><a href="#" class="product-category">@item.productCategory.Name</a></strong>
                     </li>
                 </ul>
+                <div class="product-single-filter flex-column align-items-start">
+                    <label>Color:</label>
+                    <ul class="config-size-list config-color-list config-filter-list">
+                        @foreach (var color in Model.booksToColors)
+                        {
+
+                            <li class="">
+                                <a href="javascript:;" class="filter-color border-0"
+                                   style="background-color: @color.Color.Name"></a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="product-single-filter flex-column align-items-start">
+                    <label>Size:</label>
+                    <div class="collapse show" id="widget-body-5">
+                        <div class="widget-body pb-0">
+                            <ul class="config-size-list">
+
+                                @foreach (var size in Model.sizeToBooks)
+                                {
+                                    if (Model.sizeToBooks.Count==0)
+                                    {
+                                        <label>Bu mehsulun olcusu qalammisdir:</label>
+                                    }
+                                    <li><a href="#">@size.Size.Name</a></li>
+
+                                }
+
+                            </ul>
+                        </div>
+                        <!-- End .widget-body -->
+                    </div>
+                </div>
 
                 <div class="product-action">
                     <div class="product-single-qty">
@@ -190,7 +224,7 @@
                     <div class="product-reviews-content">
                         @foreach (var item in Model.Books)
                         {
-                            @if (Model.listRewiew.Count!=0)
+                            @if (Model.listRewiew.Count != 0)
                             {
                                 <h3 class="reviews-title">@Model.listRewiew.Count review for @item.Name</h3>
 

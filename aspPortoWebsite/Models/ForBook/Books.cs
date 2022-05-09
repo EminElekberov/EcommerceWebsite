@@ -26,7 +26,9 @@ namespace aspPortoWebsite.Models.ForBook
         public IList<Review> Reviews { get; set; }
         [NotMapped]
         public List<int> ColorId { get; set; }
+        [NotMapped]
+        public List<int> SizeIds { get; set; }
         public IList<BooksToColor> booksToColors { get; set; }
-
+        public IList<SizeToBooks> sizeToBooks { get; set; }
     }
 }

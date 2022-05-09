@@ -47,8 +47,10 @@ namespace aspPortoWebsite.Controllers
         {
             HomeVM homeVM = new HomeVM
             {
-                Books = dbContext.Books.Include(z=>z.bookGallery).Where(x=>x.ID==id).ToList(),
-                listRewiew=dbContext.Reviews.Where(x=>x.BooksId==id).ToList()
+                Books = dbContext.Books.Include(z=>z.bookGallery).Include(z=>z.productCategory).Where(x=>x.ID==id).ToList(),
+                listRewiew=dbContext.Reviews.Where(x=>x.BooksId==id).ToList(),
+                booksToColors=await dbContext.BooksToColors.Include(x=>x.Color).Include(x=>x.Books).Where(x=>x.BookId==id).ToListAsync(),
+                sizeToBooks=await dbContext.SizeToBooks.Include(x=>x.Size).Include(x=>x.Books).Where(x=>x.BooksId==id).ToListAsync()
             };
             return View(homeVM);
            

@@ -36,5 +36,7 @@ namespace aspPortoWebsite.Models
         public int BooksID { get; set; }
         [NotMapped]
         public List<int> ColorId { get; set; }
+        [NotMapped]
+        public List<int> SizeId { get; set; }
     }
 }

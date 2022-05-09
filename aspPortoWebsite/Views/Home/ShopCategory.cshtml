@@ -195,7 +195,7 @@
                                             </div>
                                         </li>
                                     }
-                                   
+
                                 </ul>
                             </div><!-- End .widget-body -->
                         </div><!-- End .collapse -->
@@ -236,34 +236,13 @@
                         <div class="collapse show" id="widget-body-6">
                             <div class="widget-body">
                                 <ul class="config-swatch-list flex-column">
-                                    <li class="active">
-                                        <a href="#" style="background-color: #dda756;"></a>
-                                        <span>Brown</span>
-                                    </li>
-                                    <li>
-                                        <a href="#" style="background-color: #7bbad1;"></a>
-                                        <span>Light-Blue</span>
-                                    </li>
-                                    <li>
-                                        <a href="#" style="background-color: #81d742;"></a>
-                                        <span>Green</span>
-                                    </li>
-                                    <li>
-                                        <a href="#" style="background-color: #6085a5;"></a>
-                                        <span>Indego</span>
-                                    </li>
-                                    <li>
-                                        <a href="#" style="background-color: #333;"></a>
-                                        <span>Black</span>
-                                    </li>
-                                    <li>
-                                        <a href="#" style="background-color: #0188cc;"></a>
-                                        <span>Blue</span>
-                                    </li>
-                                    <li>
-                                        <a href="#" style="background-color: #ab6e6e;"></a>
-                                        <span>Red</span>
-                                    </li>
+                                    @foreach (var item in Model.colors)
+                                    {
+                                        <li class="">
+                                            <a href="#" style="background-color: @item.Name;"></a>
+                                            <span>@item.Name</span>
+                                        </li>
+                                    }
                                 </ul>
                             </div><!-- End .widget-body -->
                         </div><!-- End .collapse -->

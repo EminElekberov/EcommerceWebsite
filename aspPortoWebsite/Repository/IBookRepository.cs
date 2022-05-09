@@ -10,6 +10,7 @@ namespace aspPortoWebsite.Repository
    public interface IBookRepository
     {
         Task<int> AddNewBook(Category model);
+       // Task<Books> AddNewBooks(Category model);
         Task<List<Category>> GetAllBooks();
         Task<Books> GetBookById(int id);
         Task<List<Category>> GetTopBooksAsync(int count);

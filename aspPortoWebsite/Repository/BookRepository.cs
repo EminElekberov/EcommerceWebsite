@@ -53,6 +53,39 @@ namespace aspPortoWebsite.Repository
             return newBook.ID;
         }
 
+        //public async Task<Books> AddNewBooks(Category model)
+        //{
+        //    var newBook = new Books()
+        //    {
+        //        Name = model.Name,
+        //        CreatedOn = DateTime.UtcNow,
+        //        Description = model.Description,
+        //        PresentPrice = model.PresentPrice,
+        //        UpdatedOn = DateTime.UtcNow,
+        //        PastPrice = model.PastPrice,
+        //        Image = model.Image,
+        //        Sku = model.Sku,
+        //        SizeGuid = model.SizeGuid,
+        //        AdditionalInformation = model.AdditionalInformation,
+        //        ProductsCategoryId = model.ProductsCategoryId
+        //    };
+
+        //    newBook.bookGallery = new List<BookGallery>();
+
+        //    foreach (var file in model.Gallery)
+        //    {
+        //        newBook.bookGallery.Add(new BookGallery()
+        //        {
+        //            Name = file.Name,
+        //            URL = file.URL
+        //        });
+        //    }
+
+        //    await _context.Books.AddAsync(newBook);
+        //    await _context.SaveChangesAsync();
+
+        //    return newBook;
+        //}
         public async Task<List<Category>> GetAllBooks()
         {
             return await _context.Books

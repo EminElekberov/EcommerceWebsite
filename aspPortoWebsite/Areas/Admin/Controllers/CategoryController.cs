@@ -38,6 +38,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         {
             ViewBag.Categorys = _dbcontext.productCategories.ToList();
             ViewBag.Color = _dbcontext.Colors.ToList();
+            ViewBag.Size = _dbcontext.Sizes.ToList();
             ViewBag.Packets = _dbcontext.Books.ToList();
             return View();
         }
@@ -83,17 +84,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Category bookModel)
         {
-            BooksToColor booksToColor = new BooksToColor();
-            foreach (var item in bookModel.ColorId)
-            {
-                BooksToColor packet = new BooksToColor
-                {
-                    BookId= bookModel.BooksID,
-                    ColorId=item
-                };
-                _dbcontext.BooksToColors.Add(packet);
-            }
-            _dbcontext.SaveChanges();
+            
             if (!ModelState.IsValid)
             {
                 if (bookModel.Photo != null)
@@ -119,10 +110,32 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                 int id = await _bookRepository.AddNewBook(bookModel);
                 if (id > 0)
                 {
+                    BooksToColor booksToColor = new BooksToColor();
+                    foreach (var item in bookModel.ColorId)
+                    {
+                        BooksToColor packet = new BooksToColor
+                        {
+                            BookId = id,
+                            ColorId = item
+                        };
+                        _dbcontext.BooksToColors.Add(packet);
+                    }
+                    SizeToBooks sizeToBooks = new SizeToBooks();
+                    foreach (var item in bookModel.SizeId)
+                    {
+                        SizeToBooks size = new SizeToBooks
+                        {
+                            BooksId=id,
+                            SizeId=item
+                        };
+                        _dbcontext.SizeToBooks.Add(size);
+                    }
+                    _dbcontext.SaveChanges();
+
+
                     return RedirectToAction(nameof(Create), new { isSuccess = true, bookId = id });
                 }
             }
-
             return View();
         }
         private async Task<string> UploadImage(string folderPath, IFormFile file)

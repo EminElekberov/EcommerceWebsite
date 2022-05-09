@@ -194,23 +194,13 @@ namespace aspPortoWebsite.Migrations
 
             modelBuilder.Entity("aspPortoWebsite.Models.BooksToColor", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BooksID")
                         .HasColumnType("int");
 
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("BooksID");
+                    b.HasKey("BookId", "ColorId");
 
                     b.HasIndex("ColorId");
 
@@ -748,6 +738,36 @@ namespace aspPortoWebsite.Migrations
                     b.ToTable("ShopByCategories");
                 });
 
+            modelBuilder.Entity("aspPortoWebsite.Models.Size", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sizes");
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.SizeToBooks", b =>
+                {
+                    b.Property<int>("BooksId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SizeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BooksId", "SizeId");
+
+                    b.HasIndex("SizeId");
+
+                    b.ToTable("SizeToBooks");
+                });
+
             modelBuilder.Entity("aspPortoWebsite.Models.Slider", b =>
                 {
                     b.Property<int>("ID")
@@ -1090,7 +1110,9 @@ namespace aspPortoWebsite.Migrations
                 {
                     b.HasOne("aspPortoWebsite.Models.ForBook.Books", "Books")
                         .WithMany("booksToColors")
-                        .HasForeignKey("BooksID");
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("aspPortoWebsite.Models.Color", "Color")
                         .WithMany("booksToColors")
@@ -1171,6 +1193,21 @@ namespace aspPortoWebsite.Migrations
                     b.HasOne("aspPortoWebsite.Models.ProductCategory", "ProductCategoryies")
                         .WithMany("shopByCategories")
                         .HasForeignKey("ProductsCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("aspPortoWebsite.Models.SizeToBooks", b =>
+                {
+                    b.HasOne("aspPortoWebsite.Models.ForBook.Books", "Books")
+                        .WithMany("sizeToBooks")
+                        .HasForeignKey("BooksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("aspPortoWebsite.Models.Size", "Size")
+                        .WithMany("sizeToBooks")
+                        .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

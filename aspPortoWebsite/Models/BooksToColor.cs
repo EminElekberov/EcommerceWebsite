@@ -9,8 +9,7 @@ namespace aspPortoWebsite.Models
 {
     public class BooksToColor
     {
-        [Key]
-        public int ID { get; set; }
+        
         public int ColorId { get; set; }
         public int BookId { get; set; }
         public virtual Books Books { get; set; }
