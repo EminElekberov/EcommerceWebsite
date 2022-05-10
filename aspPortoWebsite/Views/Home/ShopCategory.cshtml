@@ -209,26 +209,26 @@
                             </h3>
 
 
-                                <input type="range" name="range" step="5" min="10" max="1000" style="width:300px;" value="" onchange="rangePrimary.value=value">
-                                <br />
-                                <input type="text" id="rangePrimary" name="rangePrimary" />
-                                <div class="collapse show" id="widget-body-3">
-                                    <div class="widget-body">
+                            <input type="range" name="range" step="5" min="10" max="1000" style="width:300px;" value="" onchange="rangePrimary.value=value">
+                            <br />
+                            <input type="text" id="rangePrimary" name="rangePrimary" />
+                            <div class="collapse show" id="widget-body-3">
+                                <div class="widget-body">
 
-                                        <div class="price-slider-wrapper">
-                                            <div id="price-slider"></div><!-- End #price-slider -->
-                                        </div><!-- End .price-slider-wrapper -->
+                                    <div class="price-slider-wrapper">
+                                        <div id="price-slider"></div><!-- End #price-slider -->
+                                    </div><!-- End .price-slider-wrapper -->
 
-                                        <div class="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
-                                            <div class="filter-price-text">
-                                                <span id="filter-price-range"></span>
-                                            </div><!-- End .filter-price-text -->
+                                    <div class="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
+                                        <div class="filter-price-text">
+                                            <span id="filter-price-range"></span>
+                                        </div><!-- End .filter-price-text -->
 
-                                        </div><!-- End .filter-price-action -->
+                                    </div><!-- End .filter-price-action -->
 
-                                    </div><!-- End .widget-body -->
+                                </div><!-- End .widget-body -->
 
-                                </div><!-- End .collapse -->
+                            </div><!-- End .collapse -->
                         </div><!-- End .widget -->
 
                         <div class="widget widget-color">
@@ -264,7 +264,7 @@
                                     <ul class="config-size-list">
                                         @foreach (var item in Model.sizes)
                                         {
-                                            <li><a href="#">@item.Name</a></li>
+                                            <li><a>@item.Name</a></li>
                                         }
                                     </ul>
 
