@@ -38,6 +38,13 @@ namespace aspPortoWebsite
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(3600);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<PortoDbContext>()
@@ -80,7 +87,7 @@ namespace aspPortoWebsite
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

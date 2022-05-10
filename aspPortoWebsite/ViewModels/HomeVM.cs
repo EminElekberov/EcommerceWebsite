@@ -25,6 +25,7 @@ namespace aspPortoWebsite.ViewModels
         public List<MyBlogCollection> myBlogCollections { get; set; }
         public List<MyBlogCollectionReview> myBlogCollectionReviews { get; set; }
         public List<Color> colors { get; set; }
+        public List<Size> sizes { get; set; }
         public List<OurStory> ourStories { get; set; }
         public List<WhyChoose> whyChooses { get; set; }
         public List<ProductCategory> productCategories { get; set; }

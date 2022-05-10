@@ -52,7 +52,8 @@ namespace aspPortoWebsite.Controllers
                 Books = await dbContext.Books.Include(x => x.productCategory).Where(x => x.ProductsCategoryId == id).ToListAsync(),
                 productCategories = await dbContext.productCategories.ToListAsync(),
                 BooksCategory = await dbContext.Books.Include(x => x.productCategory).ToListAsync(),
-                colors =await dbContext.Colors.ToListAsync()
+                colors =await dbContext.Colors.ToListAsync(),
+                sizes=await dbContext.Sizes.ToListAsync()
             };
             return View(homeVM);
         }
