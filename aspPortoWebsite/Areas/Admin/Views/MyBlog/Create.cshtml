@@ -35,3 +35,18 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+
+
+
+
+@section scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/32.0.0/ckeditor.min.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector('#Description')).catch(error => {
+        console.error(error);
+    });
+    </script>
+}
