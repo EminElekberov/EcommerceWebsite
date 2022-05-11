@@ -264,10 +264,25 @@
                                     <ul class="config-size-list">
                                         @foreach (var item in Model.sizes)
                                         {
-                                            <li><a>@item.Name</a></li>
+                                            <li><a data-id="@item.Id" class="callinput">@item.Name</a></li>
                                         }
-                                    </ul>
 
+                                    </ul>
+                                    <input type="hidden" name="size" id="sizer"  />
+                                    <script>
+                                       
+                                        let callinputs = document.querySelectorAll('.callinput');
+                                        callinputs.forEach(e => {
+                                            e.addEventListener("click", function (e) {
+                                                e.preventDefault();
+                                                let id = $(e.currentTarget).attr("data-id");
+                                                $("#sizer").attr("value", id);
+                                            });
+
+                                        });
+
+                                        
+                                    </script>
                                 </div><!-- End .widget-body -->
                             </div><!-- End .collapse -->
                         </div><!-- End .widget -->

@@ -8,7 +8,7 @@ namespace aspPortoWebsite.Controllers
 {
     public class FilterController : Controller
     {
-        public IActionResult Index(int rangePrimary,int rangesPrimary)
+        public IActionResult Index(int rangePrimary,int size)
         {
             if (rangePrimary == null)
             {

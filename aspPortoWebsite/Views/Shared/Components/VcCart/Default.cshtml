@@ -1,0 +1,70 @@
+﻿<div class="dropdown cart-dropdown">
+    <a href="#" class="dropdown-toggle dropdown-arrow cart-toggle" role="button"
+       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+        <i class="icon-cart-thick"></i>
+        @if (ViewBag.cart != null)
+        {
+            <span class="cart-count badge-circle">@ViewBag.cart.Count</span>
+
+        }
+    </a>
+
+    <div class="cart-overlay"></div>
+
+    <div class="dropdown-menu mobile-cart">
+        <a href="#" title="Close (Esc)" class="btn-close">×</a>
+
+        <div class="dropdownmenu-wrapper custom-scrollbar">
+            <div class="dropdown-cart-header">Shopping Cart</div>
+            <!-- End .dropdown-cart-header -->
+
+            <div class="dropdown-cart-products">
+                @if (ViewBag.cart != null)
+                {
+
+                    @foreach (var item in ViewBag.cart)
+                    {
+                        <div class="product">
+
+
+                            <div class="product-details">
+                                <h4 class="product-title">
+                                    <a href="demo3-product.html">@item.Books.Name</a>
+                                </h4>
+
+                                <span class="cart-product-info">
+                                    <span class="cart-product-qty">@item.Quantity</span>
+                                    × @item.Books.PresentPrice
+                                </span>
+                            </div><!-- End .product-details -->
+
+                            <figure class="product-image-container">
+                                <a href="demo3-product.html" class="product-image">
+                                    <img src="~/images/categories/@item.Books.Image" alt="product"
+                                         width="80" height="80">
+                                </a>
+
+                                <a href="#" class="btn-remove" title="Remove Product"><span>×</span></a>
+                            </figure>
+
+                        </div><!-- End .product -->
+                    }
+                }
+            </div><!-- End .cart-product -->
+
+            <div class="dropdown-cart-total">
+                <span>SUBTOTAL:</span>
+
+                <span class="cart-total-price float-right">@ViewBag.total</span>
+            </div><!-- End .dropdown-cart-total -->
+
+            <div class="dropdown-cart-action">
+                <a href="cart.html" class="btn btn-gray btn-block view-cart">
+                    View
+                    Cart
+                </a>
+                <a href="checkout.html" class="btn btn-dark btn-block">Checkout</a>
+            </div><!-- End .dropdown-cart-total -->
+        </div><!-- End .dropdownmenu-wrapper -->
+    </div><!-- End .dropdown-menu -->
+</div>

@@ -9,18 +9,22 @@ using System.Threading.Tasks;
 
 namespace aspPortoWebsite.ViewComponents
 {
-    public class VcCategory:ViewComponent
+    public class VcCart: ViewComponent
     {
         private readonly PortoDbContext dbContext;
-        public VcCategory(PortoDbContext _dbcontext)
+        public VcCart(PortoDbContext _dbcontext)
         {
             dbContext = _dbcontext;
         }
         public IViewComponentResult Invoke()
         {
-            var model = dbContext.Categories.OrderBy(x => x.Name).ToList();
-            return View(model);
-           
+            var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            ViewBag.cart = cart;
+            if (cart!=null)
+            {
+                ViewBag.total = cart.Sum(item => item.Books.PresentPrice * item.Quantity);
+            }
+            return View();
         }
     }
 }
