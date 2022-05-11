@@ -1,0 +1,99 @@
+﻿@model IList<SizeToBooks>
+
+<div class="row py-4" style="margin-top:80px">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2 appear-animate" data-animation-name="fadeIn"
+             data-animation-delay="300" data-animation-duration="1000">
+            <div class="product-default inner-quickview inner-icon">
+                <figure>
+                    <a href="/Categories/Details/@item.Books.ID">
+                        <img src="~/images/categories/@item.Books.Image" style="height:250px;" alt="productr" />
+                    </a>
+                    <div class="label-group">
+                        @if (item.Books.Percent != null)
+                        {
+                            <div class="product-label label-hot">HOT</div>
+                            <div class="product-label label-sale">-@item.Books.Percent%</div>
+                        }
+                    </div>
+                    <div class="btn-icon-group">
+                        <a href="#" class="btn-icon btn-add-cart product-type-simple">
+                            <i class="icon-shopping-cart"></i>
+                        </a>
+                    </div>
+                    <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">
+                        Quick
+                        View
+                    </a>
+                </figure>
+                <div class="product-details">
+                    
+                    <h3 class="product-title">
+                        <a href="demo3-product.html">@item.Books.Name</a>
+                    </h3>
+                    <div class="ratings-container">
+                        <div class="product-ratings">
+                            <span class="ratings" style="width:100%"></span><!-- End .ratings -->
+                            <span class="tooltiptext tooltip-top"></span>
+                        </div><!-- End .product-ratings -->
+                    </div><!-- End .product-container -->
+                    <div class="price-box">
+                        <span class="old-price">$@item.Books.PastPrice</span>
+                        <span class="product-price">$@item.Books.PresentPrice</span>
+                    </div><!-- End .price-box -->
+                </div><!-- End .product-details -->
+            </div>
+        </div>
+    }
+</div>
+
+<div style="margin-top:80px;">
+    @*<div class="col-4" justify-content-end>
+            <form asp-controller="Categories" asp-action="Index">
+                <span class="btn-group">
+                    <input class="form-control" type="text" name="SeachText" />
+                    <input class="p-1 ml-2 btn btn-sm btn-info" type="submit" value="Search>" />
+                </span>
+            </form>
+        </div>*@
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Present Price</th>
+                <th scope="col">Past Price</th>
+                <th scope="col">Percent</th>
+                <th scope="col">Sku</th>
+                <th scope="col">Description</th>
+                <th scope="col">Additional Information</th>
+                <th scope="col">Size</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        <img width="200" height="150" src="~/images/categories/@item.Books.Image" alt="Alternate Text" />
+                    </td>
+                    <td>@item.Books.Name</td>
+                    <td>@item.Books.PresentPrice</td>
+                    <td>@item.Books.PastPrice</td>
+                    <td>@item.Books.Percent</td>
+                    <td>@item.Books.Sku</td>
+                    <td>@Html.Raw(item.Books.Description)</td>
+                    <td>@Html.Raw(item.Books.AdditionalInformation)</td>
+                    <td>@item.Size.Name</td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</div>
