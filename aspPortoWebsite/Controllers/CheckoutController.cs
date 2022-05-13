@@ -15,6 +15,7 @@ namespace aspPortoWebsite.Controllers
             portoDbContext = portoDb;
         }
         public IActionResult Index()
+        
         {
             Checkout checkout = new Checkout();
             return View(checkout);

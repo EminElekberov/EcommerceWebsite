@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace aspPortoWebsite.ViewComponents
 {
-    public class VcCart: ViewComponent
+    public class VcCart : ViewComponent
     {
         private readonly PortoDbContext dbContext;
         public VcCart(PortoDbContext _dbcontext)
@@ -17,10 +17,10 @@ namespace aspPortoWebsite.ViewComponents
             dbContext = _dbcontext;
         }
         public IViewComponentResult Invoke()
-       {
+        {
             var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
-            if (cart!=null)
+            if (cart != null)
             {
                 ViewBag.total = cart.Sum(item => item.Books.PresentPrice * item.Quantity);
             }
