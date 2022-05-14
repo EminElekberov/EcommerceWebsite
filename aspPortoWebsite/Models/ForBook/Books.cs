@@ -28,7 +28,10 @@ namespace aspPortoWebsite.Models.ForBook
         public List<int> ColorId { get; set; }
         [NotMapped]
         public List<int> SizeIds { get; set; }
+        [NotMapped]
+        public int Count { get; set; }
         public IList<BooksToColor> booksToColors { get; set; }
         public IList<SizeToBooks> sizeToBooks { get; set; }
+        public IList<Sales> sales { get; set; }
     }
 }

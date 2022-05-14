@@ -17,7 +17,6 @@ namespace aspPortoWebsite.ViewModels
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
         [Compare(nameof(Password))]//bu yoxlayirki yuxarda yazilan  paswordla confim[aswordun eynidimi

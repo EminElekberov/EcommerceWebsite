@@ -25,11 +25,11 @@ namespace aspPortoWebsite.Controllers
         }
         public async Task<IActionResult> Index(int page = 1)
         {
-            int take = 3;
+            int take = 1;
             ProductAndPaginationWm model = new ProductAndPaginationWm
             {
                 Books = await dbContext.Books.Skip(take * (page - 1)).Take(take).ToListAsync(),
-                Pagination = new PaginationModel(await dbContext.Groups.CountAsync(), take, page)
+                Pagination = new PaginationModel(await dbContext.Books.CountAsync(), take, page)
             };
             return View(model);
         }

@@ -127,12 +127,12 @@ namespace aspPortoWebsite.Controllers
             }
             return -1;
         }
-        public async Task<IActionResult> Buy(int id)
+        public async Task<IActionResult> Buy(int id,int? page)
         {
             if (SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart") == null)
             {
                 List<Item> cart = new List<Item>();
-                cart.Add(new Item { Books = dbContext.Books.Where(x => x.ID == id).FirstOrDefault(), Quantity = 1 });
+                cart.Add(new Item { Books = dbContext.Books.Where(x => x.ID == id).FirstOrDefault(), Quantity = page??1 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             else

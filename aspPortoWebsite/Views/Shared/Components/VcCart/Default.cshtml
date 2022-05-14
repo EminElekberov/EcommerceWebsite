@@ -40,12 +40,15 @@
 
                             <figure class="product-image-container">
                                 <a href="demo3-product.html" class="product-image">
-                                    <img src="~/images/categories/@item.Books.Image" alt="product"
+                                    <img  src="~/images/categories/@item.Books.Image" alt="product"
                                          width="80" height="80">
                                 </a>
 
-                                <a href="#" class="btn-remove" title="Remove Product"><span>×</span></a>
+                                <a asp-controller="cart" asp-action="remove" asp-route-id="@item.Books.ID" class="btn-remove"  title="Remove Product"><span>×</span></a>
                             </figure>
+                            <script>
+                               
+                            </script>
 
                         </div><!-- End .product -->
                     }

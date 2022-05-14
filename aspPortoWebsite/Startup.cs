@@ -94,7 +94,7 @@ namespace aspPortoWebsite
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}/{page?}");
 
 
                 endpoints.MapControllerRoute(

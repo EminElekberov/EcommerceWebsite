@@ -119,15 +119,40 @@
 
                 <div class="product-action">
                     <div class="product-single-qty">
-                        <input class="horizontal-quantity form-control" type="text">
+                        <input class="horizontal-quantity count form-control" type="text">
                     </div>
                     <!-- End .product-single-qty -->
 
-                    <a href="javascript:;" class="btn btn-dark add-cart mr-2" title="Add to Cart">
+                    <a asp-controller="Cart" asp-action="Buy" asp-route-id="@item.ID" class="btn add_cart btn-dark add-cart mr-2" title="Add to Cart">
                         Add to
                         Cart
                     </a>
+                    <a class="hidden cart_link"></a>
+                    <script>
 
+                        document.querySelector(".add_cart").addEventListener("click", (e) => {
+                            e.preventDefault();
+                            let count = document.querySelector(".count").value
+                            let link = e.currentTarget.getAttribute("href")
+
+                            let atag = document.querySelector(".cart_link")
+                            link = link + "/" + count
+                            atag.setAttribute("href", link)
+                            atag.click();
+                            console.log(link + "/" + count)
+
+                        })
+
+
+                        //$(document).ready(function () {
+                        //    console.log("isledi")
+                        //    $(document).on("click", ".add_cart", (e) => {
+                        //        e.preventDefault()
+                        //        let count = $(".count").val();
+                        //        console.log(count)
+                        //    })
+                        //})
+                    </script>
                     <a href="cart.html" class="btn btn-gray view-cart d-none">View cart</a>
                 </div>
                 <!-- End .product-action -->

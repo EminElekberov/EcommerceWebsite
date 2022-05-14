@@ -12,7 +12,7 @@ namespace aspPortoWebsite.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool Gender { get; set; }
-
+        public string Password { get; set; }
         [NotMapped]
         public List<string> RoleIds { get; set; }
         [NotMapped]
@@ -21,5 +21,7 @@ namespace aspPortoWebsite.Models
         public string newRoleId { get; set; }
 
         public List<UserToProduct> UserToProducts { get; set; }
+        public virtual ICollection<Checkout> Checkouts { get; set; }
+        public virtual IList<Sales> Sales { get; set; }
     }
 }

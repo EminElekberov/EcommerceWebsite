@@ -42,6 +42,7 @@ namespace aspPortoWebsite.Models
         public DbSet<BooksToColor> BooksToColors { get; set; }
         public DbSet<ShopByCategory> ShopByCategories { get; set; }
         public DbSet<Checkout> Checkouts { get; set; }
+        public DbSet<Sales> Sales { get; set; }
         public DbSet<MyBlogCollectionReview> MyBlogCollectionReviews { get; set; }
         //public DbSet<Teacher> Teacher { get; set; } 
         // public DbSet<Hobby> Hobby { get; set; } 
@@ -96,6 +97,20 @@ namespace aspPortoWebsite.Models
                .WithMany(b => b.myBlogCollectionReviews)
                .HasForeignKey(a => a.MyBlogCollectionid);
 
+            modelBuilder.Entity<Checkout>()
+               .HasOne(a => a.User)
+               .WithMany(b => b.Checkouts)
+               .HasForeignKey(a => a.UserId);
+
+            modelBuilder.Entity<Sales>()
+              .HasOne(a => a.User)
+              .WithMany(b => b.Sales)
+              .HasForeignKey(a => a.UserId);
+
+            modelBuilder.Entity<Sales>()
+              .HasOne(a => a.Books)
+              .WithMany(b => b.sales)
+              .HasForeignKey(a => a.BooksId);
             ////many to many
             //modelBuilder.Entity<TechertoHobby>()
             //    .HasNoKey();

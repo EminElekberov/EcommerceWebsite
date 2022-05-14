@@ -41,66 +41,102 @@ namespace aspPortoWebsite.Controllers
         [ValidateAntiForgeryToken]//menasi odurki yeni bir defe sorugu gondermek olsun
         public async Task<IActionResult> Register(UserRegisterVM register)
         {
-            if (!ModelState.IsValid)
+            if (_userManager.FindByEmailAsync(register.Email).Result == null)
             {
-                return View(register);
-            }
-            if (_userManager.Users.Any(x=>x.NormalizedEmail==register.Email.ToUpper()))
-            {
-                ModelState.AddModelError("Email", "User is exist");
-                return View();
-            }
-            User user = new User
-            {
-                Email=register.Email,
-                UserName=register.Email,
-                FirstName=register.FirstName,
-                LastName=register.LastName
-            };
-            var result =await _userManager.CreateAsync(user, register.Password);
-            if (!result.Succeeded)
-            {
-                foreach (var item in result.Errors)
+                User user = new User
                 {
-                    ModelState.AddModelError("",item.Description);
-                    return View();
+                    UserName = register.Email,
+                    Email=register.Email,
+                    Password=register.Password,
+                    FirstName=register.FirstName,
+                    LastName=register.LastName
+                };
+                var result = await _userManager.CreateAsync(user, register.Password);
+                if (result.Succeeded)
+                {
+                    _userManager.AddToRoleAsync(user, "User").Wait();
+                    await _signInManager.SignInAsync(user, false);
+                    return Redirect("/Account/Login");
                 }
             }
+            return View(register);
 
-            string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            string callback = Url.Action("ConfirmEmail", "account", new { token, email = user.Email }, Request.Scheme);
-            string body = string.Empty;
-            using (StreamReader reader = new StreamReader("wwwroot/templates/forgetpasswod.html"))
-            {
-                body = reader.ReadToEnd();
-            }
-            body = body.Replace("{{url}}", callback);
-            _emailService.Send(user.Email, "Reset Password", body);
-            await _userManager.AddToRoleAsync(user, "User");
-            await _signInManager.SignInAsync(user, true);
-            return RedirectToAction("Index","Home");
+            #region
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(register);
+            //}
+            //if (_userManager.Users.Any(x=>x.NormalizedEmail==register.Email.ToUpper()))
+            //{
+            //    ModelState.AddModelError("Email", "User is exist");
+            //    return View();
+            //}
+            //User user = new User
+            //{
+            //    Email=register.Email,
+            //    UserName=register.Email,
+            //    FirstName=register.FirstName,
+            //    LastName=register.LastName
+            //};
+            //var result =await _userManager.CreateAsync(user, register.Password);
+            //if (!result.Succeeded)
+            //{
+            //    foreach (var item in result.Errors)
+            //    {
+            //        ModelState.AddModelError("",item.Description);
+            //        return View();
+            //    }
+            //}
+
+            //string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            //string callback = Url.Action("ConfirmEmail", "account", new { token, email = user.Email }, Request.Scheme);
+            //string body = string.Empty;
+            //using (StreamReader reader = new StreamReader("wwwroot/templates/forgetpasswod.html"))
+            //{
+            //    body = reader.ReadToEnd();
+            //}
+            //body = body.Replace("{{url}}", callback);
+            //_emailService.Send(user.Email, "Reset Password", body);
+            //await _userManager.AddToRoleAsync(user, "User");
+            //await _signInManager.SignInAsync(user, true);
+            //return RedirectToAction("Index","Home");
+            #endregion
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVm loginVm)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(loginVm);
+                return NotFound();
             }
-            User user= await _userManager.FindByNameAsync(loginVm.Email);
-            if (user == null)
+            var userName = await _userManager.FindByEmailAsync(loginVm.Email);
+            var result = await _signInManager.PasswordSignInAsync(userName, loginVm.Password, false, false);
+            if (result.Succeeded)
             {
-                ModelState.AddModelError("", "Email or password invalid");
-                return View();
+                return Redirect($"/Home/Index/{userName.Email}");
             }
-            var result = await _signInManager.PasswordSignInAsync(user, loginVm.Password, true, false);
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError("", "pasword is invalid");
-                return View();
-            }
-            return RedirectToAction("Index", "Home");
+            return View(loginVm);
+
+            #region
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(loginVm);
+            //}
+            //User user= await _userManager.FindByNameAsync(loginVm.Email);
+            //if (user == null)
+            //{
+            //    ModelState.AddModelError("", "Email or password invalid");
+            //    return View();
+            //}
+            //var result = await _signInManager.PasswordSignInAsync(user, loginVm.Password, false, false);
+            //if (!result.Succeeded)
+            //{
+            //    ModelState.AddModelError("", "pasword is invalid");
+            //    return View();
+            //}
+            //return RedirectToAction("Index", "Home");
+            #endregion
         }
         public async Task<IActionResult> Logout()
         {
