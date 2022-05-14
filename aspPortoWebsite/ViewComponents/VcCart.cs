@@ -16,6 +16,7 @@ namespace aspPortoWebsite.ViewComponents
         {
             dbContext = _dbcontext;
         }
+
         public IViewComponentResult Invoke()
         {
             var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
