@@ -112,7 +112,10 @@ namespace aspPortoWebsite.Controllers
         {
             var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
-            ViewBag.total = cart.Sum(item => item.Books.PresentPrice * item.Quantity);
+            if (cart!=null)
+            {
+                ViewBag.total = cart.Sum(item => item.Books.PresentPrice * item.Quantity);
+            }
             return View();
         }
         private int isExits(int id)
@@ -145,7 +148,7 @@ namespace aspPortoWebsite.Controllers
                 }
                 else
                 {
-                    cart.Add(new Item { Books = dbContext.Books.Where(x => x.ID == id).FirstOrDefault(), Quantity = 1 });
+                    cart.Add(new Item { Books = dbContext.Books.Where(x => x.ID == id).FirstOrDefault(), Quantity = page ?? 1 });
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }

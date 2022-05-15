@@ -1,5 +1,6 @@
 ﻿using aspPortoWebsite.Models;
 using aspPortoWebsite.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 namespace aspPortoWebsite.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class RoleController : Controller
     {
         private readonly PortoDbContext _portoDbContext;

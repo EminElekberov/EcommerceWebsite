@@ -25,32 +25,35 @@
         </thead>
 
         <tbody>
-
-            @foreach (var item in ViewBag.cart)
+            @if (ViewBag.cart != null)
             {
 
-                <tr>
+                @foreach (var item in ViewBag.cart)
+                {
 
-                    <td align="center">
-                        <a asp-controller="cart" asp-action="remove" asp-route-id="@item.Books.ID"><i class="fas fa-trash"></i></a>
-                    </td>
-                    <td>@item.Books.ID</td>
-                    <td>@item.Books.Name</td>
-                    <td><img src="~/images/categories/@item.Books.Image" width="60" /></td>
-                    <td>@item.Books.PresentPrice</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.Books.Description</td>
-                    <td>@item.Books.AdditionalInformation</td>
-                    <td>@(item.Books.PresentPrice * item.Quantity)</td>
+                    <tr>
 
-                    <td>
-                        <a asp-controller="Home" asp-action="index" style="color:red;margin-left:30px;"><i class="far fa-arrow-alt-circle-left"></i></a>
-                        <a asp-controller="checkout" asp-action="index" asp-route-id="" style="margin-left:187px;"><i class="fas fa-check"></i></a>
-                        <br />
-                        <label>Back Shoppping</label>
-                        <label style="margin-left:120px;">Checkout</label>
-                    </td>
-                </tr>
+                        <td align="center">
+                            <a asp-controller="cart" asp-action="remove" asp-route-id="@item.Books.ID"><i class="fas fa-trash"></i></a>
+                        </td>
+                        <td>@item.Books.ID</td>
+                        <td>@item.Books.Name</td>
+                        <td><img src="~/images/categories/@item.Books.Image" width="60" /></td>
+                        <td>@item.Books.PresentPrice</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Books.Description</td>
+                        <td>@item.Books.AdditionalInformation</td>
+                        <td>@(item.Books.PresentPrice * item.Quantity)</td>
+
+                        <td>
+                            <a asp-controller="Home" asp-action="index" style="color:red;margin-left:30px;"><i class="far fa-arrow-alt-circle-left"></i></a>
+                            <a asp-controller="checkout" asp-action="index" asp-route-id="" style="margin-left:187px;"><i class="fas fa-check"></i></a>
+                            <br />
+                            <label>Back Shoppping</label>
+                            <label style="margin-left:120px;">Checkout</label>
+                        </td>
+                    </tr>
+                }
             }
             <tr>
                 <td align="right" colspan="8">Sum:</td>

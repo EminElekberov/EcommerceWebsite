@@ -1,0 +1,37 @@
+﻿
+@model IList<User>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData["Success"]
+    </div>
+}
+<!-- CSS only -->
+<table class="table table-bordered table-striped">
+    <thead class="bg-login">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th>Edit/Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.Raw(item.UserName)</td>
+                <td>@Html.Raw(item.Email)</td>
+                <td>@Html.Raw(item.Password)</td>
+                <td>
+                    <a class="btn btn-danger" href="/Admin/User/Delete/@item.Id"><i class="fas fa-trash-alt"></i></a>
+                    <a class="btn btn-primary" href="/Admin/User/Details/@item.Id" style="color:red">Etrafli</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

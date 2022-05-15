@@ -1,4 +1,5 @@
 ﻿using aspPortoWebsite.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 namespace aspPortoWebsite.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class HomeFooterController : Controller
     {
         private readonly PortoDbContext dbContext;

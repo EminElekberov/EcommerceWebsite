@@ -2,6 +2,7 @@
 using aspPortoWebsite.Models;
 using aspPortoWebsite.Repository;
 using aspPortoWebsite.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,8 @@ using System.Threading.Tasks;
 namespace aspPortoWebsite.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class CategoryController : Controller
     {
         private readonly PortoDbContext _dbcontext;
@@ -30,7 +33,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            var group = _dbcontext.Categories.ToList();
+            var group = _dbcontext.Books.ToList();
             return View(group);
         }
         [HttpGet]

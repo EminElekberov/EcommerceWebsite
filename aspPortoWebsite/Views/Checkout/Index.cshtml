@@ -15,7 +15,7 @@
                 </li>
             </ul>
 
-            <div class="login-form-container">
+            @*<div class="login-form-container">
                 <h4>
                     Returning customer?
                     <button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="btn btn-link btn-toggle">Login</button>
@@ -67,9 +67,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
-            <div class="checkout-discount">
+            @*<div class="checkout-discount">
                 <h4>
                     Have a coupon?
                     <button data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne" class="btn btn-link btn-toggle">ENTER YOUR CODE</button>
@@ -93,8 +93,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
+            <div>
+                <label>xos geldin @User.Identity.Name</label>
+            </div>
             <div class="row">
                 @*<form method="post" enctype="multipart/form-data">*@
                     <div class="col-lg-7">
@@ -142,7 +145,7 @@
                                     <textarea class="form-control name="OrderInformation" asp-for="OrderInformation" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>-->
                                 </div>
                                 <p class="text-center mt-4 mb-0">
-                                    <button id="submit-btn" class="btn btn-primary rounded-pill d-inline-flex" type="submit">Send Message</button>
+                                    <button id="submit-btn" class="btn btn-primary rounded-pill d-inline-flex" type="submit">complete the purchase</button>
                                 </p>
                                 </form>
                             </li>

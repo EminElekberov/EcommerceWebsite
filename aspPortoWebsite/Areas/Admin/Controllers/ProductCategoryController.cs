@@ -1,5 +1,6 @@
 ﻿using aspPortoWebsite.Extension;
 using aspPortoWebsite.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 namespace aspPortoWebsite.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class ProductCategoryController : Controller
     {
         private readonly PortoDbContext dbContext;

@@ -62,11 +62,11 @@
             </div><!-- End .dropdown-cart-total -->
 
             <div class="dropdown-cart-action">
-                <a href="cart.html" class="btn btn-gray btn-block view-cart">
+                <a asp-controller="Cart" asp-action="Index" class="btn btn-gray btn-block view-cart">
                     View
                     Cart
                 </a>
-                <a href="checkout.html" class="btn btn-dark btn-block">Checkout</a>
+                <a asp-controller="Checkout" asp-action="Index" class="btn btn-dark btn-block">Checkout</a>
             </div><!-- End .dropdown-cart-total -->
         </div><!-- End .dropdownmenu-wrapper -->
     </div><!-- End .dropdown-menu -->

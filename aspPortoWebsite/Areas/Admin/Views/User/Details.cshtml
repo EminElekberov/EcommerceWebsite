@@ -1,0 +1,27 @@
+﻿
+@model User
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData["Success"]
+    </div>
+}
+<table class="table table-bordered table-striped">
+    <thead class="bg-login-image">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+       
+            <tr>
+                <td>@Html.Raw(Model.UserName)</td>
+                <td>@Html.Raw(Model.Email)</td>
+            </tr>
+
+    </tbody>
+</table>

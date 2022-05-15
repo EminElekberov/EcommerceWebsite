@@ -25,17 +25,15 @@
         <li>
             <a href="#">Pages</a>
             <ul>
-                <li><a href="wishlist.html">Wishlist</a></li>
-                <li><a href="cart.html">Shopping Cart</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+                <li><a asp-controller="Checkout" asp-action="Index">Checkout</a></li>
                 <li><a href="/About/Index">About Us</a></li>
                 <li>
                     <a href="/Blog/Index">Blog</a>
                 </li>
                 <li><a href="/Contact/index">Contact Us</a></li>
                 <li><a href="/Account/Login">Login</a></li>
-                <li><a href="/Account/Register">Regsiter</a></li>
+                <li><a href="/Account/Login">Regsiter</a></li>
                 <li><a href="/Account/ForgetPassword">Forgot Password</a></li>
             </ul>
         </li>
