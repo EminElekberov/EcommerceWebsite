@@ -17,6 +17,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
     public class GroupController : Controller
     {
         private readonly PortoDbContext dbContext;
+
         public GroupController(PortoDbContext _dbContext)
         {
             dbContext = _dbContext;
