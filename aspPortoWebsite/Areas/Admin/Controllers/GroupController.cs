@@ -13,7 +13,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
 {
     [Area("Admin")]
     //[Authorize(Roles = "Admin")]
-
     public class GroupController : Controller
     {
         private readonly PortoDbContext dbContext;
@@ -84,7 +83,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                     status = 404
                 });
             }
-
             return Json(group);
         }
 
