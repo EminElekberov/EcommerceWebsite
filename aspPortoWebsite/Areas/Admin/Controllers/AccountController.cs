@@ -88,6 +88,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         public async Task SeedAdmin()
         {
             if (_userManager.FindByEmailAsync("admin@gmail.com").Result == null)
+
             {
                 User identityUser = new User()
                 {
