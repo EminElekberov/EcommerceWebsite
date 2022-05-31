@@ -258,6 +258,7 @@ namespace aspPortoWebsite.Controllers
             }
 
             var user = await _userManager.FindByEmailAsync(email);
+
             if (user == null)
             {
                 ViewBag.ErrorMessage = $"The User ID {email} is invalid";
