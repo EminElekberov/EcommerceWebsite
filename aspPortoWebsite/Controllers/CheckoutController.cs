@@ -47,6 +47,7 @@ namespace aspPortoWebsite.Controllers
                     CompanyName=checkout.CompanyName,
                     Country=checkout.Country,
                     EmailAddress=checkout.EmailAddress,
+
                     FirstName=checkout.FirstName,
                     LastName=checkout.LastName,
                     OrderInformation=checkout.OrderInformation,
