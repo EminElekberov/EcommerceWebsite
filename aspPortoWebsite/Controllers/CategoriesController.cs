@@ -21,7 +21,6 @@ namespace aspPortoWebsite.Controllers
         {
             dbContext = _dbContext;
             _bookRepository = bookRepository;
-
         }
         public async Task<IActionResult> Index(int page = 1)
         {
