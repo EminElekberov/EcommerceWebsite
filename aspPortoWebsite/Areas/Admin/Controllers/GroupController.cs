@@ -123,7 +123,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                     status = 404
                 });
             }
-
             dbContext.Groups.Remove(grp);
             await dbContext.SaveChangesAsync();
             return Json(new
