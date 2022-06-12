@@ -18,6 +18,7 @@ namespace aspPortoWebsite.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
+
             var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
             if (cart != null)
