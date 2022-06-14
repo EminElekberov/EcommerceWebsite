@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 namespace aspPortoWebsite.ViewComponents
 {
     public class VcCart : ViewComponent
-
     {
         private readonly PortoDbContext dbContext;
         public VcCart(PortoDbContext _dbcontext)
