@@ -56,7 +56,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                 Fullname = name
             };
 
-
             await dbContext.Groups.AddAsync(group);
             await dbContext.SaveChangesAsync();
 
