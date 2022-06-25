@@ -1,4 +1,4 @@
-﻿@model Category
+﻿@model Books
 @{
     ViewData["Title"] = "Edit";
 }
@@ -6,10 +6,10 @@
     <form method="post" enctype="multipart/form-data">
         <div asp-validation-summary="All" class="text-danger"></div>
 
-        <div class="form-group">
-            <label>Add Picture</label>
-            <input asp-for="Photo" class="form-control" />
-            <span asp-validation-for="Photo" class="text-danger"></span>
+        <div class="mb-3">
+            <label>Image</label>
+            <input type="file" class="form-control" asp-for="Image">
+            <span asp-validation-for="Image" style="color:red"></span>
         </div>
         <div class="form-group mt-3">
             <label>Current Photo</label>

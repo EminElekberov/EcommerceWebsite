@@ -1,5 +1,6 @@
 ﻿using aspPortoWebsite.Extension;
 using aspPortoWebsite.Models;
+using aspPortoWebsite.Models.ForBook;
 using aspPortoWebsite.Repository;
 using aspPortoWebsite.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -87,13 +88,15 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Category bookModel)
         {
-            
+
             if (!ModelState.IsValid)
             {
                 if (bookModel.Photo != null)
                 {
-                    string folder = "images/categories/";
-                    bookModel.Image = await UploadImage(folder, bookModel.Photo);
+                    string folder = @"images\categories";
+                    var newImg = await bookModel.Photo.SaveAsync(env.WebRootPath, folder);
+                    bookModel.Image = newImg;
+                    // bookModel.Image = await UploadImage(folder, bookModel.Photo);
                 }
                 if (bookModel.GalleryFiles != null)
                 {
@@ -105,7 +108,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                     {
                         var gallery = new GalleryModel()
                         {
-                            Name = await UploadImage(folder,file)
+                            Name = await UploadImage(folder, file)
                         };
                         bookModel.Gallery.Add(gallery);
                     }
@@ -128,8 +131,8 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                     {
                         SizeToBooks size = new SizeToBooks
                         {
-                            BooksId=id,
-                            SizeId=item
+                            BooksId = id,
+                            SizeId = item
                         };
                         _dbcontext.SizeToBooks.Add(size);
                     }
@@ -149,19 +152,20 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
             return result;
         }
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return Redirect("/NOtfound/ErrorPage");
             }
-            var cases = await _dbcontext.Categories.FindAsync(id);
+            var cases = await _dbcontext.Books.FindAsync(id);
             if (cases == null)
             {
                 return NotFound();
 
             }
-            _dbcontext.Categories.Remove(cases);
+            _dbcontext.Books.Remove(cases);
             await _dbcontext.SaveChangesAsync();
             TempData["Success"] = "Slider silindi";
             return Redirect("/Admin/category/Index");
@@ -173,7 +177,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var cases = _dbcontext.Categories.Find(id);
+            var cases = _dbcontext.Books.Find(id);
             if (cases == null)
             {
                 return NotFound();
@@ -188,12 +192,12 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             {
                 return View(cases);
             }
-            var sliderdb = _dbcontext.Categories.Find(cases.ID);
+            var sliderdb = _dbcontext.Books.Find(cases.ID);
             if (cases.Photo != null)
             {
                 try
                 {
-                    string folder = @"images\portfolio";
+                    string folder = @"images\categories\";
                     var newImg = await cases.Photo.SaveAsync(env.WebRootPath, folder);
                     FileExtension.DeleteImage(env.WebRootPath, folder, sliderdb.Image);
                     sliderdb.Image = newImg;
@@ -206,11 +210,11 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             }
             sliderdb.Name = cases.Name;
             sliderdb.PastPrice = cases.PastPrice;
-            sliderdb.PresentPrice= cases.PresentPrice;
-            sliderdb.SizeGuid= cases.SizeGuid;
-            sliderdb.Sku= cases.Sku;
-            sliderdb.AdditionalInformation= cases.AdditionalInformation;
-            sliderdb.Description= cases.Description;
+            sliderdb.PresentPrice = cases.PresentPrice;
+            sliderdb.SizeGuid = cases.SizeGuid;
+            sliderdb.Sku = cases.Sku;
+            sliderdb.AdditionalInformation = cases.AdditionalInformation;
+            sliderdb.Description = cases.Description;
             await _dbcontext.SaveChangesAsync();
             return Redirect("/Admin/category/Index");
         }

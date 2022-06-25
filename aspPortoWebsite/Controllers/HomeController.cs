@@ -1,4 +1,5 @@
-﻿using aspPortoWebsite.Models;
+﻿using aspPortoWebsite.Extension;
+using aspPortoWebsite.Models;
 using aspPortoWebsite.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,10 +20,12 @@ namespace aspPortoWebsite.Controllers
             dbContext = _dbContext;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
+            int take = 1;
             HomeVM vM = new HomeVM
             {
+                Pagination = new PaginationModel(await dbContext.Books.CountAsync(), take, page),
                 Categories = await dbContext.Categories.ToListAsync(),
                 Sliders = await dbContext.Sliders.ToListAsync(),
                 shopByCategories = await dbContext.ShopByCategories.Include(x => x.ProductCategoryies).ToListAsync(),

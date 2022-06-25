@@ -274,13 +274,9 @@
                             <h4 class="widget-title">My Account</h4>
                             <div class="links link-parts row">
                                 <ul class="link-part col-xl-4 mb-0">
-                                    <li><a asp-action="AboutPage">About Us</a></li>
-                                    <li><a href="demo3-contact.html">Contact Us</a></li>
-                                    <li><a href="dashboard.html">My Account</a></li>
-                                </ul>
-                                <ul class="link-part col-xl-8">
-                                    <li class="pl-xl-2 ml-xl-1"><a href="#">Orders History</a></li>
-                                    <li class="pl-xl-2 ml-xl-1"><a href="#">Advanced Search</a></li>
+                                    <li><a asp-controller="About" asp-action="Index">About Us</a></li>
+                                    <li><a asp-controller="Contact" asp-action="Index">Contact Us</a></li>
+                                    <li><a asp-controller="Account" asp-action="Login">My Account</a></li>
                                 </ul>
                             </div>
                         </div><!-- End .widget -->

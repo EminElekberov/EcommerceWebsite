@@ -34,7 +34,7 @@ namespace aspPortoWebsite.Controllers
         {
             HomeVM homeVM = new HomeVM
             {
-                myBlogCollections = _dbContext.MyBlogCollections.ToList(),
+                myBlogCollections = _dbContext.MyBlogCollections.Include(x=>x.myBlogCollectionReviews).ToList(),
                 BlogCollection = _dbContext.MyBlogCollections.Find(id),
                 myBlogCollectionReviews = _dbContext.MyBlogCollectionReviews.Where(z => z.MyBlogCollectionid == id).ToList()
             };

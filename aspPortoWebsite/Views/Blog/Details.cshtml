@@ -138,7 +138,7 @@
                                     </div><!-- End .post-date -->
 
                                     <h2 class="post-title">
-                                        <a href="single.html">@item.Title</a>
+                                        <a href="single.html">@Html.Raw(item.Title)</a>
                                     </h2>
 
                                     <div class="post-content">
@@ -149,7 +149,7 @@
                                             }
                                             else
                                             {
-                                                @item.Description
+                                                @Html.Raw(item.Description)
                                             }
                                         </p>
 

@@ -1,4 +1,5 @@
-﻿using aspPortoWebsite.Models;
+﻿using aspPortoWebsite.Extension;
+using aspPortoWebsite.Models;
 using aspPortoWebsite.Models.ForBook;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace aspPortoWebsite.ViewModels
 {
     public class HomeVM
     {
+        public PaginationModel Pagination { get; set; }
         public List<Slider> Sliders { get; set; }
         public List<Category> Categories { get; set; }
         public List<Books> Books { get; set; }

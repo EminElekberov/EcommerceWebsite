@@ -15,7 +15,6 @@
                             </div>
                         }
                     </div>
-
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                         @foreach (var image in item.bookGallery)
                         {
@@ -44,7 +43,7 @@
             <!-- End .product-single-gallery -->
 
             <div class="col-lg-7 col-md-6 product-single-details">
-                <h1 class="product-title">@item.Name</h1>
+                <h1 class="product-title">@Html.Raw(item.Name)</h1>
 
 
                 <div class="ratings-container">
@@ -69,7 +68,7 @@
 
                 <div class="product-desc">
                     <p>
-                        @item.Description
+                        @Html.Raw(item.Description)
                     </p>
                 </div>
                 <!-- End .product-desc -->
@@ -212,7 +211,7 @@
 
                 <div class="tab-pane fade show active" id="product-desc-content" role="tabpanel" aria-labelledby="product-tab-desc">
                     <div class="product-desc-content">
-                        @desc.Description
+                        @Html.Raw(desc.Description)
                     </div>
                     <!-- End .product-desc-content -->
                 </div>
@@ -228,7 +227,7 @@
                             <!-- End .col-md-4 -->
 
                             <div class="col-md-8">
-                                @desc.SizeGuid
+                                @Html.Raw(desc.SizeGuid)
                             </div>
                         </div>
                         <!-- End .row -->
@@ -238,7 +237,7 @@
                 <!-- End .tab-pane -->
 
                 <div class="tab-pane fade" id="product-tags-content" role="tabpanel" aria-labelledby="product-tab-tags">
-                    @desc.AdditionalInformation
+                    @Html.Raw(desc.AdditionalInformation)
                 </div>
                 <!-- End .tab-pane -->
 
