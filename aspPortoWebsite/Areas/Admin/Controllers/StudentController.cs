@@ -57,7 +57,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             portoDbContext.StudentAdresses.Add(studentAdress);
             portoDbContext.SaveChanges();
             return Redirect("/Admin/Student/Index");
-
         }
         //
         public IActionResult Edit(int? Id)
