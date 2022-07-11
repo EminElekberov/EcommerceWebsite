@@ -65,7 +65,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
                 return NotFound();
             }
             return View(client);
-
         }
         [HttpPost]
         public async Task<IActionResult> Edit(Clients slider)
