@@ -12,6 +12,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
+
     public class ClientsController : Controller
     {
         private readonly PortoDbContext dbContext;
