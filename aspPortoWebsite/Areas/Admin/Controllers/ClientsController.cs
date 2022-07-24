@@ -21,7 +21,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             dbContext = _dbContext;
             env = _env;
         }
-
         public IActionResult Index()
         {
             return View(dbContext.Clients.ToList());
