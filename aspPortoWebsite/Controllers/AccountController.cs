@@ -163,6 +163,7 @@ namespace aspPortoWebsite.Controllers
             if (!ModelState.IsValid)
             {
                 return View();
+
             }
             User user = await _userManager.FindByNameAsync(User.Identity.Name);
             if (user.Email!=userUpdateVm.Email && _userManager.Users.Any(x=>x.NormalizedEmail==userUpdateVm.Email.ToUpper()))
