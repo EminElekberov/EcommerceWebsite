@@ -76,6 +76,7 @@ namespace aspPortoWebsite.Models
                 .WithOne(b => b.Student)
                 .HasForeignKey<StudentAdress>(b => b.StudentId);
             //one to many
+
             modelBuilder.Entity<Student>()
                .HasOne(a => a.Group)
                .WithMany(b => b.Students)
