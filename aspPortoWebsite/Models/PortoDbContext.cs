@@ -119,6 +119,7 @@ namespace aspPortoWebsite.Models
                .HasOne(a => a.Teacher)
                .WithMany(b => b.TechertoHobbies)
                .HasForeignKey(a => a.TeacherID);
+            
             modelBuilder.Entity<TechertoHobby>()
               .HasOne(a => a.Hobby)
               .WithMany(b => b.TechertoHobbies)
