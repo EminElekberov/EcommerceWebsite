@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace aspPortoWebsite.ViewComponents
 {
+
     public class VcCategory:ViewComponent
     {
         private readonly PortoDbContext dbContext;
