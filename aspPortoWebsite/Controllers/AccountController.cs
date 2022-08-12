@@ -222,7 +222,6 @@ namespace aspPortoWebsite.Controllers
             return RedirectToAction("Login","Account");
         }
 
-
         public IActionResult ResetPassword(string token, string email)
         {
             ResetPasswordVM resetPasswordVM = new ResetPasswordVM
