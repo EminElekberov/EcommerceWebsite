@@ -200,6 +200,7 @@ namespace aspPortoWebsite.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgetPassword(ForgetPasswordVM forgetVM)
