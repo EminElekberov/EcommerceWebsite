@@ -188,7 +188,6 @@ namespace aspPortoWebsite.Controllers
                     }
                 }
             }
-
             user.FirstName = userUpdateVm.FirstName;
             user.LastName = userUpdateVm.LastName;
             user.Email = userUpdateVm.Email;
