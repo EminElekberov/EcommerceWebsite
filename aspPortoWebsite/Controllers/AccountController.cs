@@ -138,6 +138,7 @@ namespace aspPortoWebsite.Controllers
             //return RedirectToAction("Index", "Home");
             #endregion
         }
+
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
