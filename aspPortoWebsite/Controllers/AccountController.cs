@@ -60,7 +60,6 @@ namespace aspPortoWebsite.Controllers
                 }
             }
             return View(register);
-
             #region
             //if (!ModelState.IsValid)
             //{
