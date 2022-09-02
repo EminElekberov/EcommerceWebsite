@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace aspPortoWebsite.Migrations
 {
-    public partial class initial : Migration
+    public partial class initialportodb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,7 +56,8 @@ namespace aspPortoWebsite.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
-                    Gender = table.Column<bool>(nullable: false)
+                    Gender = table.Column<bool>(nullable: false),
+                    Password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -269,6 +270,19 @@ namespace aspPortoWebsite.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sizes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sizes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Sliders",
                 columns: table => new
                 {
@@ -448,6 +462,34 @@ namespace aspPortoWebsite.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Checkouts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    CompanyName = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: false),
+                    SteetAddress = table.Column<string>(nullable: false),
+                    Town = table.Column<string>(nullable: false),
+                    PhoneNumber = table.Column<string>(nullable: false),
+                    EmailAddress = table.Column<string>(nullable: false),
+                    OrderInformation = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Checkouts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Checkouts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -668,8 +710,7 @@ namespace aspPortoWebsite.Migrations
                 columns: table => new
                 {
                     ColorId = table.Column<int>(nullable: false),
-                    BookId = table.Column<int>(nullable: false),
-                    ID = table.Column<int>(nullable: false)
+                    BookId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -736,6 +777,68 @@ namespace aspPortoWebsite.Migrations
                         column: x => x.BooksId,
                         principalTable: "Books",
                         principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sales",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: true),
+                    BooksId = table.Column<int>(nullable: false),
+                    Count = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    date = table.Column<DateTime>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    CompanyName = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: false),
+                    SteetAddress = table.Column<string>(nullable: false),
+                    Town = table.Column<string>(nullable: false),
+                    PhoneNumber = table.Column<string>(nullable: false),
+                    EmailAddress = table.Column<string>(nullable: false),
+                    OrderInformation = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sales_Books_BooksId",
+                        column: x => x.BooksId,
+                        principalTable: "Books",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Sales_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SizeToBooks",
+                columns: table => new
+                {
+                    SizeId = table.Column<int>(nullable: false),
+                    BooksId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SizeToBooks", x => new { x.BooksId, x.SizeId });
+                    table.ForeignKey(
+                        name: "FK_SizeToBooks_Books_BooksId",
+                        column: x => x.BooksId,
+                        principalTable: "Books",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SizeToBooks_Sizes_SizeId",
+                        column: x => x.SizeId,
+                        principalTable: "Sizes",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -830,6 +933,11 @@ namespace aspPortoWebsite.Migrations
                 column: "ProductCategoryiesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Checkouts_UserId",
+                table: "Checkouts",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GalleryModel_CategoryId",
                 table: "GalleryModel",
                 column: "CategoryId");
@@ -855,9 +963,24 @@ namespace aspPortoWebsite.Migrations
                 column: "BooksId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sales_BooksId",
+                table: "Sales",
+                column: "BooksId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sales_UserId",
+                table: "Sales",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShopByCategories_ProductsCategoryId",
                 table: "ShopByCategories",
                 column: "ProductsCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SizeToBooks_SizeId",
+                table: "SizeToBooks",
+                column: "SizeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentAdresses_StudentId",
@@ -916,6 +1039,9 @@ namespace aspPortoWebsite.Migrations
                 name: "BooksToColors");
 
             migrationBuilder.DropTable(
+                name: "Checkouts");
+
+            migrationBuilder.DropTable(
                 name: "Clients");
 
             migrationBuilder.DropTable(
@@ -940,10 +1066,16 @@ namespace aspPortoWebsite.Migrations
                 name: "Reviews");
 
             migrationBuilder.DropTable(
+                name: "Sales");
+
+            migrationBuilder.DropTable(
                 name: "Services");
 
             migrationBuilder.DropTable(
                 name: "ShopByCategories");
+
+            migrationBuilder.DropTable(
+                name: "SizeToBooks");
 
             migrationBuilder.DropTable(
                 name: "Sliders");
@@ -983,6 +1115,9 @@ namespace aspPortoWebsite.Migrations
 
             migrationBuilder.DropTable(
                 name: "Books");
+
+            migrationBuilder.DropTable(
+                name: "Sizes");
 
             migrationBuilder.DropTable(
                 name: "Students");

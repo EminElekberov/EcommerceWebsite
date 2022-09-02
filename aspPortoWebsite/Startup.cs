@@ -36,7 +36,7 @@ namespace aspPortoWebsite
             services.AddTransient<IValidator<StudentVm>, StudentValidator>();
             services.AddDbContext<PortoDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("Server"));
             });
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
