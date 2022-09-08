@@ -23,7 +23,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index(int page=1)
         {
-            int take = 3;
+            int take = 1;
             //    var model = dbContext.Groups.OrderBy(x => x.Id).AsQueryable();
             //    int pageSize = 3;
             //    return View(await PaginatedList<Group>.CreateAsync(model.AsNoTracking(), id ?? 1,pageSize));
