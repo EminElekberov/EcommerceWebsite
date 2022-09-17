@@ -163,7 +163,6 @@ namespace aspPortoWebsite.Controllers
             if (!ModelState.IsValid)
             {
                 return View();
-
             }
 
             User user = await _userManager.FindByNameAsync(User.Identity.Name);
