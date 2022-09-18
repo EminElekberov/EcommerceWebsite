@@ -1,4 +1,5 @@
 ﻿using aspPortoWebsite.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,7 +10,6 @@ using System.Threading.Tasks;
 namespace aspPortoWebsite.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
     public class AccountController : Controller
     {
         private readonly PortoDbContext _portoDbContext;
@@ -89,7 +89,6 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         public async Task SeedAdmin()
         {
             if (_userManager.FindByEmailAsync("admin@gmail.com").Result == null)
-
             {
                 User identityUser = new User()
                 {
