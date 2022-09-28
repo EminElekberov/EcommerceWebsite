@@ -35,6 +35,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             User user = new User();
             return View(user);
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(User user)
         {
