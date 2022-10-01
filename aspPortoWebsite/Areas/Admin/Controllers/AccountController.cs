@@ -50,6 +50,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
             return View(user);
         }
         [HttpGet]
+
         public IActionResult Register()
         {
 
