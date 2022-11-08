@@ -21,6 +21,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         {
             dbContext = _dbContext;
         }
+
         public async Task<IActionResult> Index(int page=1)
         {
             int take = 1;
