@@ -18,6 +18,7 @@ namespace aspPortoWebsite.Areas.Admin.Controllers
         {
             dbContext = _dbcontext;
         }
+
         public IActionResult Index()
         {
             return View(dbContext.ContactsForms.ToList());
